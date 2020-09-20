@@ -19,6 +19,6 @@ namespace BoletimEscolarVersão3Modelos.Modelos
         public virtual Curso Curso { get; set; }
         [JsonIgnore]
         [IgnoreDataMember]
-        public virtual ICollection<AlunoMateriaNotas> Materias { get; set; } = new HashSet<AlunoMateriaNotas>();
+        public virtual ICollection<AlunoMateriaNotas> MateriasNota { get; set; } = new HashSet<AlunoMateriaNotas>();
     }
 }

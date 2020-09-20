@@ -73,5 +73,26 @@ namespace BoletimEscolarVersão3.Controllers
 
 
         }
+
+        //Alterar Curso
+        [HttpPut]
+        [Route("Atulizar")]
+        public ActionResult Atualizar(int id, Curso curso)
+        {
+
+            var resultado = banco.Curso.Where(q => q.Id == id).FirstOrDefault();
+            if (resultado is null)
+            {
+                return BadRequest(Resultado.NãoSucesso);
+            }
+            resultado = curso;
+            banco.SaveChanges();
+            return Ok(Resultado.Sucesso);
+
+        }
+       
+
+
+
     }
 }

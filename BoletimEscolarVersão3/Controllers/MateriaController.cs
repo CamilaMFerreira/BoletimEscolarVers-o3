@@ -8,6 +8,7 @@ using BoletimEscolarVersão3Modelos.Modelos;
 using BoletimEscolarVersão3Modelos.Uteis;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BoletimEscolarVersão3.Controllers
 {
@@ -91,5 +92,104 @@ namespace BoletimEscolarVersão3.Controllers
 
 
         }
+
+        //Alterar materia
+        [HttpPut]
+        [Route("Atulizar")]
+        public ActionResult Atualizar(int id, Materia materia)
+        {
+
+            var resultado = banco.Materia.Where(q => q.Id == id).FirstOrDefault();
+            if (resultado is null)
+            {
+                return BadRequest(Resultado.NãoSucesso);
+            }
+            resultado = materia;
+            banco.SaveChanges();
+            return Ok(Resultado.Sucesso);
+
+        }
+        //Adicionar Nota
+        [HttpPost]
+        [Route("Nota")]
+        public ActionResult AdicionarMateriaCursoNota(int idaluno, int idmateria, double nota)
+        {
+            var result = new Result<AlunoMateriaNotas>();
+
+            try
+            {
+                using (banco)
+                {
+                    //var aluno = banco.Aluno.Where(q => q.Id == idaluno).Include(x => x.Curso).FirstOrDefault();
+                    var aluno = banco.Aluno.Where(q => q.Id == idaluno).Include(x => x.MateriasNota).ThenInclude(z => z.Materia).FirstOrDefault();
+                    if (aluno is null)
+                    {
+                        return BadRequest("Aluno não cadastrado ");
+                    }
+                    var materia = banco.Materia.Where(q => q.Id == idmateria).Include(x => x.Curso).FirstOrDefault();
+                    if (materia is null)
+                    {
+                        return BadRequest("Materia não cadastrada");
+                    }
+                    var curso = materia.Curso.Materias.Where(q => q.IdCurso == aluno.IdCurso).FirstOrDefault();
+
+                    if (curso is null)
+                    {
+                        return BadRequest("Materia não faz parte do curso do aluno");
+                    }
+
+                    var relaçao = aluno.MateriasNota.Where(q => q.Materia.Id == idmateria).Where(q => q.Aluno.Id == idaluno).FirstOrDefault();
+                    if (relaçao != null)
+                    {
+                        return BadRequest("Nota ja cadastrada");
+                    }
+
+
+                    aluno.MateriasNota.Add(new AlunoMateriaNotas()
+                    {
+                        Materia = materia,
+                        Aluno = aluno,
+                        Nota = nota
+
+                    });
+                    banco.SaveChanges();
+
+
+                    result.Error = false;
+                    result.Status = HttpStatusCode.OK;
+                    result.Message.Add("ok");
+                    result.Data = aluno.MateriasNota.Where(q => q.Aluno.Id == idaluno).ToList();
+                    return Ok(result.Data);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Error = true;
+                result.Message.Add(e.Message);
+                return BadRequest(result);
+            }
+        }
+        //Alterar nota
+        [HttpPut]
+        [Route("AtulizarNota")]
+        public ActionResult AtualizarNota(int idaluno, int idmateria , double novanota)
+        {
+
+
+            var aluno = banco.Aluno.Where(q => q.Id == idaluno).Include(x => x.MateriasNota).ThenInclude(z => z.Materia).FirstOrDefault();
+            var resultado = aluno.MateriasNota.Where(q => q.Materia.Id == idmateria).Where(q => q.Aluno.Id == idaluno).FirstOrDefault();
+            if (resultado is null)
+            {
+                return BadRequest(Resultado.NãoSucesso);
+            }
+            resultado.Nota = novanota;
+            banco.SaveChanges();
+            return Ok(Resultado.Sucesso);
+
+
+        }
+
+
     }
 }
