@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BoletimEscolarVersão3Modelos.Migrations
 {
     [DbContext(typeof(BancoContex))]
-    [Migration("20200918135437_initialcreate")]
+    [Migration("20200920194735_initialcreate")]
     partial class initialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,6 +35,11 @@ namespace BoletimEscolarVersão3Modelos.Migrations
 
                     b.Property<DateTime>("DataNascimento")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Função")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<int>("IdCurso")
                         .HasColumnType("int");
@@ -146,11 +151,11 @@ namespace BoletimEscolarVersão3Modelos.Migrations
             modelBuilder.Entity("BoletimEscolarVersão3Modelos.Modelos.AlunoMateriaNotas", b =>
                 {
                     b.HasOne("BoletimEscolarVersão3Modelos.Modelos.Aluno", "Aluno")
-                        .WithMany("Materias")
+                        .WithMany("MateriasNota")
                         .HasForeignKey("AlunoId");
 
                     b.HasOne("BoletimEscolarVersão3Modelos.Modelos.Materia", "Materia")
-                        .WithMany("alunos")
+                        .WithMany("AlunoNota")
                         .HasForeignKey("MateriaId");
                 });
 

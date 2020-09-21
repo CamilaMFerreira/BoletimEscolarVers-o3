@@ -69,7 +69,7 @@ namespace BoletimEscolarVersão3.Controllers
 
         //Mostrar Lista de Materias
         [HttpGet]
-        [Route("MostraAlunos")]
+        [Route("MostraMateria")]
         public ActionResult Get()
         {
             return Ok(banco.Materia);
@@ -95,7 +95,7 @@ namespace BoletimEscolarVersão3.Controllers
 
         //Alterar materia
         [HttpPut]
-        [Route("Atulizar")]
+        [Route("Atualizar")]
         public ActionResult Atualizar(int id, Materia materia)
         {
 

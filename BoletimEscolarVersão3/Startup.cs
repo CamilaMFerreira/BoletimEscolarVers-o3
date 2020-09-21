@@ -34,10 +34,10 @@ namespace BoletimEscolarVersão3
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v3", new OpenApiInfo
+                c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "BoletimeSCOLAR",
-                    Version = "v3",
+                    Title = "Boletim Escolar",
+                    Version = "v1",
                 });
             });
             services.AddDbContext<BancoContex>(op => op.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -64,7 +64,7 @@ namespace BoletimEscolarVersão3
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v3/swagger.json", "V3 BoletimEscolar");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "V3BoletimEscolar");
                 c.DocExpansion(DocExpansion.None);
             });
 

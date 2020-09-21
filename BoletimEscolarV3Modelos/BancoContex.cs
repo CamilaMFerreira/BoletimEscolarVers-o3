@@ -44,7 +44,7 @@ namespace BoletimEscolarVersão3Modelos
         {
             //if (!optionsBuilder.IsConfigured)
             //{
-            //    optionsBuilder.UseSqlServer("Server==NT-03374\\SQLEXPRESS;Database=master;Initial Catalog=BoletimV3;");
+            //    optionsBuilder.UseSqlServer("Server==NT-03374\\SQLEXPRESS;Database=master;Initial Catalog=BoletimV4;");
             //}
 
             base.OnConfiguring(optionsBuilder);

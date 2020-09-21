@@ -8,6 +8,7 @@ using BoletimEscolarVersão3Modelos.Modelos;
 using BoletimEscolarVersão3Modelos.Uteis;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BoletimEscolarVersão3.Controllers
 {
@@ -106,7 +107,17 @@ namespace BoletimEscolarVersão3.Controllers
 
         }
 
-
-
+        //Listar Notas
+        [HttpGet]
+        [Route("ListarNotas")]
+        public ActionResult ListarNotas(string cpf, int id)
+        {
+            var busca = banco.Aluno.Where(q => q.Cpf == cpf).Include(x => x.MateriasNota).ThenInclude(z => z.Materia).FirstOrDefault();
+            if (busca is null)
+            {
+                return BadRequest(Resultado.NãoSucesso);
+            }
+            return Ok(busca.MateriasNota);
+        }
     }
 }

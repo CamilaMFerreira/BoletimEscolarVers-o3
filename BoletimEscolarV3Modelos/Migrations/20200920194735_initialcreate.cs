@@ -31,6 +31,7 @@ namespace BoletimEscolarVersão3Modelos.Migrations
                     Sobrenome = table.Column<string>(maxLength: 100, nullable: false),
                     DataNascimento = table.Column<DateTime>(nullable: false),
                     Cpf = table.Column<string>(maxLength: 100, nullable: false),
+                    Função = table.Column<string>(maxLength: 100, nullable: false),
                     IdCurso = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
