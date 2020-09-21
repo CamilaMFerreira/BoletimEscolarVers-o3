@@ -1,13 +1,9 @@
-﻿using BoletimEscolarVersão3Modelos.Modelos;
+﻿using BoletimEscolarVersao3.Model;
 using BoletimEscolarVersão3Modelos.Uteis;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Net.Http;
-using System.Text;
 using System.Windows.Forms;
 
 namespace BoletimEscolarVersão3Visual

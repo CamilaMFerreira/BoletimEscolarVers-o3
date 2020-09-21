@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Text.Json.Serialization;
 
-namespace BoletimEscolarVersão3Modelos.Modelos
-{
+namespace BoletimEscolarVersao3.Model
+{ 
     public class Curso
     {
         public int Id { get; set; }

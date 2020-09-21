@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Text.Json.Serialization;
 
-namespace BoletimEscolarVersão3Modelos.Modelos
+namespace BoletimEscolarVersao3.Model
 {
     public class Aluno
     {

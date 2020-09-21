@@ -21,4 +21,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BoletimEscolarVersao3.Model\BoletimEscolarVersao3.Model.csproj" />
+  </ItemGroup>
+
 </Project>

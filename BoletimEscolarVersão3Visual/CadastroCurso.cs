@@ -1,11 +1,6 @@
-﻿using BoletimEscolarVersão3Modelos.Modelos;
+﻿using BoletimEscolarVersao3.Model;
 using BoletimEscolarVersão3Modelos.Uteis;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace BoletimEscolarVersão3Visual

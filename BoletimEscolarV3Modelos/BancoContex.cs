@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using BoletimEscolarVersão3Modelos.Modelos;
+﻿using BoletimEscolarVersao3.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace BoletimEscolarVersão3Modelos

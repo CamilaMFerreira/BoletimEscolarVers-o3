@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BoletimEscolarVersão3Modelos.Modelos
+﻿namespace BoletimEscolarVersao3.Model
 {
     public class AlunoMateriaNotas
     {

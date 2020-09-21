@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
+using BoletimEscolarVersao3.Model;
 using BoletimEscolarVersão3Modelos;
-using BoletimEscolarVersão3Modelos.Modelos;
 using BoletimEscolarVersão3Modelos.Uteis;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
