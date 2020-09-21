@@ -169,6 +169,7 @@
             this.btn_voltar.TabIndex = 4;
             this.btn_voltar.Text = "Voltar";
             this.btn_voltar.UseVisualStyleBackColor = true;
+            this.btn_voltar.Click += new System.EventHandler(this.btn_voltar_Click);
             // 
             // btn_excluir
             // 
@@ -191,7 +192,6 @@
             this.label8.Size = new System.Drawing.Size(64, 28);
             this.label8.TabIndex = 0;
             this.label8.Text = "Aluno";
-           
             // 
             // CadastroAluno
             // 

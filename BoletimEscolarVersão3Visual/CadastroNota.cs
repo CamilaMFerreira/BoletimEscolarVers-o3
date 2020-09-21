@@ -19,5 +19,12 @@ namespace BoletimEscolarVersão3Visual
         {
 
         }
+
+        private void btn_voltar_Click(object sender, EventArgs e)
+        {
+            var menu = new Menu();
+            this.Hide();
+            menu.Show();
+        }
     }
 }

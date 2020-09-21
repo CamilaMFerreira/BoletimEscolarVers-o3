@@ -107,7 +107,6 @@
             this.label5.Size = new System.Drawing.Size(48, 18);
             this.label5.TabIndex = 1;
             this.label5.Text = "Cpf :";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // textBox3
             // 
@@ -133,7 +132,6 @@
             this.label6.Size = new System.Drawing.Size(63, 18);
             this.label6.TabIndex = 1;
             this.label6.Text = "NOTAS";
-            this.label6.Click += new System.EventHandler(this.label5_Click);
             // 
             // btn_voltar
             // 
@@ -144,6 +142,7 @@
             this.btn_voltar.TabIndex = 4;
             this.btn_voltar.Text = "Voltar";
             this.btn_voltar.UseVisualStyleBackColor = true;
+            this.btn_voltar.Click += new System.EventHandler(this.btn_voltar_Click);
             // 
             // btn_verificar
             // 
@@ -154,7 +153,6 @@
             this.btn_verificar.TabIndex = 4;
             this.btn_verificar.Text = "Verificar";
             this.btn_verificar.UseVisualStyleBackColor = true;
-            this.btn_verificar.Click += new System.EventHandler(this.button2_Click);
             // 
             // ListarNotas
             // 

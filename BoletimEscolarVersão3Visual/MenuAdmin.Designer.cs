@@ -44,6 +44,7 @@
             this.btn_cadaluno.TabIndex = 0;
             this.btn_cadaluno.Text = "Aluno";
             this.btn_cadaluno.UseVisualStyleBackColor = true;
+            this.btn_cadaluno.Click += new System.EventHandler(this.btn_cadaluno_Click);
             // 
             // btn_cadcurso
             // 
@@ -54,6 +55,7 @@
             this.btn_cadcurso.TabIndex = 0;
             this.btn_cadcurso.Text = "Curso";
             this.btn_cadcurso.UseVisualStyleBackColor = true;
+            this.btn_cadcurso.Click += new System.EventHandler(this.btn_cadcurso_Click);
             // 
             // btn_cadmateria
             // 
@@ -64,6 +66,7 @@
             this.btn_cadmateria.TabIndex = 0;
             this.btn_cadmateria.Text = "Matéria";
             this.btn_cadmateria.UseVisualStyleBackColor = true;
+            this.btn_cadmateria.Click += new System.EventHandler(this.btn_cadmateria_Click);
             // 
             // btn_voltar
             // 
@@ -74,6 +77,7 @@
             this.btn_voltar.TabIndex = 0;
             this.btn_voltar.Text = "Voltar";
             this.btn_voltar.UseVisualStyleBackColor = true;
+            this.btn_voltar.Click += new System.EventHandler(this.btn_voltar_Click);
             // 
             // label1
             // 

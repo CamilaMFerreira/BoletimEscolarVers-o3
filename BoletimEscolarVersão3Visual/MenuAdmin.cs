@@ -14,5 +14,33 @@ namespace BoletimEscolarVersão3Visual
         {
             InitializeComponent();
         }
+
+        private void btn_voltar_Click(object sender, EventArgs e)
+        {
+            var menu = new Menu();
+            this.Hide();
+            menu.Show();
+        }
+
+        private void btn_cadaluno_Click(object sender, EventArgs e)
+        {
+            var menu = new CadastroAluno();
+            this.Hide();
+            menu.Show();
+        }
+
+        private void btn_cadcurso_Click(object sender, EventArgs e)
+        {
+            var menu = new CadastroCurso();
+            this.Hide();
+            menu.Show();
+        }
+
+        private void btn_cadmateria_Click(object sender, EventArgs e)
+        {
+            var menu = new CadastroMateria();
+            this.Hide();
+            menu.Show();
+        }
     }
 }
