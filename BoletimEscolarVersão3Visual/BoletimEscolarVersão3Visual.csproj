@@ -6,4 +6,8 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BoletimEscolarV3Modelos\BoletimEscolarVersão3Modelos.csproj" />
+  </ItemGroup>
+
 </Project>

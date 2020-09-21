@@ -50,7 +50,7 @@ namespace BoletimEscolarVersão3.Controllers
 
         //Mostrar Lista de Cursos
         [HttpGet]
-        [Route("MostraAlunos")]
+        [Route("Mostracursos")]
         public ActionResult Get()
         {
             return Ok(banco.Curso);
@@ -76,7 +76,7 @@ namespace BoletimEscolarVersão3.Controllers
 
         //Alterar Curso
         [HttpPut]
-        [Route("Atulizar")]
+        [Route("Atualizar")]
         public ActionResult Atualizar(int id, Curso curso)
         {
 

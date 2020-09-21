@@ -26,7 +26,8 @@ namespace BoletimEscolarVersão3Visual
         {
             var menu = new CadastroAluno();
             this.Hide();
-            menu.Show();
+            menu.ShowDialog();
+            this.Show();
         }
 
         private void btn_cadcurso_Click(object sender, EventArgs e)

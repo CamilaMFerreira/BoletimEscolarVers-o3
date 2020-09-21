@@ -105,6 +105,7 @@
             this.btn_cadastro.TabIndex = 4;
             this.btn_cadastro.Text = "Cadastrar";
             this.btn_cadastro.UseVisualStyleBackColor = true;
+            this.btn_cadastro.Click += new System.EventHandler(this.btn_cadastro_Click);
             // 
             // btn_voltar
             // 
