@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BoletimEscolarV3Modelos\BoletimEscolarVersão3Modelos.csproj" />
+    <ProjectReference Include="..\BoletimEscolarVersão3Visual\BoletimEscolarVersão3Visual.csproj" />
   </ItemGroup>
 
 
