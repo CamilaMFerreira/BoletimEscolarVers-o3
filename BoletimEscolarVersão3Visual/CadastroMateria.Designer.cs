@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txt_data = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -42,6 +41,8 @@
             this.cb_curso = new System.Windows.Forms.ComboBox();
             this.txt_descrição = new System.Windows.Forms.TextBox();
             this.txt_nome = new System.Windows.Forms.TextBox();
+            this.btn_excluir = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -54,18 +55,6 @@
             this.label1.Size = new System.Drawing.Size(306, 46);
             this.label1.TabIndex = 0;
             this.label1.Text = "Escola Padawan 2.0";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.SlateGray;
-            this.label2.Location = new System.Drawing.Point(34, 68);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(162, 28);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Cadastro Materia";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -110,7 +99,7 @@
             // btn_cadastro
             // 
             this.btn_cadastro.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btn_cadastro.Location = new System.Drawing.Point(269, 373);
+            this.btn_cadastro.Location = new System.Drawing.Point(198, 367);
             this.btn_cadastro.Name = "btn_cadastro";
             this.btn_cadastro.Size = new System.Drawing.Size(149, 50);
             this.btn_cadastro.TabIndex = 4;
@@ -183,11 +172,35 @@
             this.txt_nome.Size = new System.Drawing.Size(259, 23);
             this.txt_nome.TabIndex = 2;
             // 
+            // btn_excluir
+            // 
+            this.btn_excluir.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_excluir.Location = new System.Drawing.Point(455, 410);
+            this.btn_excluir.Name = "btn_excluir";
+            this.btn_excluir.Size = new System.Drawing.Size(69, 28);
+            this.btn_excluir.TabIndex = 4;
+            this.btn_excluir.Text = "Excluir";
+            this.btn_excluir.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.SlateGray;
+            this.label2.Location = new System.Drawing.Point(24, 64);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(79, 28);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Matéria";
+            
+            // 
             // CadastroMateria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(561, 450);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btn_excluir);
             this.Controls.Add(this.txt_nome);
             this.Controls.Add(this.txt_descrição);
             this.Controls.Add(this.cb_curso);
@@ -200,7 +213,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txt_data);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "CadastroMateria";
             this.Text = "CadastroMateria";
@@ -212,7 +224,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txt_data;
         private System.Windows.Forms.Label label4;
@@ -225,5 +236,7 @@
         private System.Windows.Forms.ComboBox cb_curso;
         private System.Windows.Forms.TextBox txt_descrição;
         private System.Windows.Forms.TextBox txt_nome;
+        private System.Windows.Forms.Button btn_excluir;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -42,6 +42,8 @@
             this.cb_curso = new System.Windows.Forms.ComboBox();
             this.btn_cadastrar = new System.Windows.Forms.Button();
             this.btn_voltar = new System.Windows.Forms.Button();
+            this.btn_excluir = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -57,15 +59,10 @@
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.SlateGray;
-            this.label2.Location = new System.Drawing.Point(21, 55);
+            this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(147, 28);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Cadastro Aluno";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.label2.Size = new System.Drawing.Size(100, 23);
+            this.label2.TabIndex = 5;
             // 
             // label3
             // 
@@ -156,7 +153,7 @@
             // btn_cadastrar
             // 
             this.btn_cadastrar.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btn_cadastrar.Location = new System.Drawing.Point(289, 422);
+            this.btn_cadastrar.Location = new System.Drawing.Point(179, 408);
             this.btn_cadastrar.Name = "btn_cadastrar";
             this.btn_cadastrar.Size = new System.Drawing.Size(149, 50);
             this.btn_cadastrar.TabIndex = 4;
@@ -173,11 +170,36 @@
             this.btn_voltar.Text = "Voltar";
             this.btn_voltar.UseVisualStyleBackColor = true;
             // 
+            // btn_excluir
+            // 
+            this.btn_excluir.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_excluir.Location = new System.Drawing.Point(436, 466);
+            this.btn_excluir.Name = "btn_excluir";
+            this.btn_excluir.Size = new System.Drawing.Size(69, 28);
+            this.btn_excluir.TabIndex = 4;
+            this.btn_excluir.Text = "Excluir";
+            this.btn_excluir.UseVisualStyleBackColor = true;
+            this.btn_excluir.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.ForeColor = System.Drawing.Color.SlateGray;
+            this.label8.Location = new System.Drawing.Point(21, 64);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(64, 28);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Aluno";
+           
+            // 
             // CadastroAluno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(533, 506);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.btn_excluir);
             this.Controls.Add(this.btn_voltar);
             this.Controls.Add(this.btn_cadastrar);
             this.Controls.Add(this.cb_curso);
@@ -215,5 +237,7 @@
         private System.Windows.Forms.ComboBox cb_curso;
         private System.Windows.Forms.Button btn_cadastrar;
         private System.Windows.Forms.Button btn_voltar;
+        private System.Windows.Forms.Button btn_excluir;
+        private System.Windows.Forms.Label label8;
     }
 }

@@ -33,7 +33,6 @@
             this.btn_cadmateria = new System.Windows.Forms.Button();
             this.btn_voltar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_cadaluno
@@ -43,7 +42,7 @@
             this.btn_cadaluno.Name = "btn_cadaluno";
             this.btn_cadaluno.Size = new System.Drawing.Size(234, 47);
             this.btn_cadaluno.TabIndex = 0;
-            this.btn_cadaluno.Text = "Cadastro Aluno";
+            this.btn_cadaluno.Text = "Aluno";
             this.btn_cadaluno.UseVisualStyleBackColor = true;
             // 
             // btn_cadcurso
@@ -53,7 +52,7 @@
             this.btn_cadcurso.Name = "btn_cadcurso";
             this.btn_cadcurso.Size = new System.Drawing.Size(234, 47);
             this.btn_cadcurso.TabIndex = 0;
-            this.btn_cadcurso.Text = "Cadastro Curso";
+            this.btn_cadcurso.Text = "Curso";
             this.btn_cadcurso.UseVisualStyleBackColor = true;
             // 
             // btn_cadmateria
@@ -63,7 +62,7 @@
             this.btn_cadmateria.Name = "btn_cadmateria";
             this.btn_cadmateria.Size = new System.Drawing.Size(234, 47);
             this.btn_cadmateria.TabIndex = 0;
-            this.btn_cadmateria.Text = "Cadastro Matéria";
+            this.btn_cadmateria.Text = "Matéria";
             this.btn_cadmateria.UseVisualStyleBackColor = true;
             // 
             // btn_voltar
@@ -87,23 +86,11 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Escola Padawan 2.0";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.SlateGray;
-            this.label2.Location = new System.Drawing.Point(12, 55);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(212, 28);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Área do Administrador";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(445, 461);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_voltar);
             this.Controls.Add(this.btn_cadmateria);
@@ -123,6 +110,5 @@
         private System.Windows.Forms.Button btn_cadmateria;
         private System.Windows.Forms.Button btn_voltar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
     }
 }

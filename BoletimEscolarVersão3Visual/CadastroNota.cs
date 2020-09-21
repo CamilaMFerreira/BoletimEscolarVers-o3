@@ -8,14 +8,14 @@ using System.Windows.Forms;
 
 namespace BoletimEscolarVersão3Visual
 {
-    public partial class MenuProf : Form
+    public partial class CadastroNota : Form
     {
-        public MenuProf()
+        public CadastroNota()
         {
             InitializeComponent();
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
 
         }
