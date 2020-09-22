@@ -57,9 +57,16 @@ namespace BoletimEscolarVersão3.UI
             aluno.Cpf = txt_cpf.Text;
             aluno.DataNascimento = Convert.ToDateTime(txt_data.Text);
             aluno.IdCurso = (cb_curso.SelectedIndex) + 1;
-            new Adicionar().Add(aluno, caminho);
+            var httpClient = new HttpClient();
+            var serializedProduto = JsonConvert.SerializeObject(aluno);
+            var content = new StringContent(serializedProduto, Encoding.UTF8, "application/json");
+            var resultRequest = httpClient.PostAsync(caminho, content);
+            resultRequest.Wait();
+            var result = resultRequest.Result.Content.ReadAsStringAsync();
+            result.Wait();
+
             txt_nome.Clear();
-            MessageBox.Show("Aluno Cadastrado!");
+            MessageBox.Show(result.Result);
 
         }
 

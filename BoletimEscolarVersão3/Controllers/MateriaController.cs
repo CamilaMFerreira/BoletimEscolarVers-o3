@@ -146,9 +146,12 @@ namespace BoletimEscolarVersão3.Controllers
                     {
                         Materia = materia,
                         Aluno = aluno,
+                        IdAluno = aluno.Id,
+                        IdMateria = materia.Id,
                         Nota = nota
 
                     });
+
                     banco.SaveChanges();
 
 
@@ -156,7 +159,7 @@ namespace BoletimEscolarVersão3.Controllers
                     result.Status = HttpStatusCode.OK;
                     result.Message.Add("ok");
                     result.Data = aluno.MateriasNota.Where(q => q.Aluno.Id == idaluno).ToList();
-                    return Ok(result.Data);
+                    return Ok($"{result.Data} cadsatrado");
                 }
 
             }

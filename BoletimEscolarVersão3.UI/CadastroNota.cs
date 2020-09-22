@@ -19,9 +19,9 @@ namespace BoletimEscolarVersão3.UI
         public CadastroNota()
         {
             InitializeComponent();
-            ListadeAlunos();
-            ListadeMateria();
             ListadeCursos();
+
+
         }
         private void ListadeCursos()
         {
@@ -44,6 +44,7 @@ namespace BoletimEscolarVersão3.UI
                         cb_curso.Items.Add($"{curso.Id} - {curso.Nome}");
                     }
                 }
+              
             }
             catch { }
         }
@@ -52,8 +53,10 @@ namespace BoletimEscolarVersão3.UI
             try
             {
                 var httpClient = new HttpClient();
-                var URL = "https://localhost:44355/Materia/MostraMateria";
-                var resultRequest = httpClient.GetAsync(URL);
+                var URL = "https://localhost:44355/Materia/FiltroMateria";
+                var curso = cb_curso.Text;
+                curso = curso.Substring(0, curso.IndexOf("-"));
+                var resultRequest = httpClient.GetAsync($"{URL}?id={curso}");
                 var result = resultRequest.GetAwaiter().GetResult();
 
                 if (result.IsSuccessStatusCode)
@@ -76,8 +79,11 @@ namespace BoletimEscolarVersão3.UI
             try
             {
                 var httpClient = new HttpClient();
-                var URL = "https://localhost:44355/Aluno/Mostra";
-                var resultRequest = httpClient.GetAsync(URL);
+                var URL = "https://localhost:44355/Aluno/FiltroAlunos";
+                var curso = cb_curso.Text;
+                curso = curso.Substring(0, curso.IndexOf("-"));
+                var idcurso = Convert.ToInt32(curso);
+                var resultRequest = httpClient.GetAsync($"{URL}?id={idcurso}");
                 var result = resultRequest.GetAwaiter().GetResult();
 
                 if (result.IsSuccessStatusCode)
@@ -111,17 +117,27 @@ namespace BoletimEscolarVersão3.UI
         {
             var caminho = "https://localhost:44355/Materia/Nota";
             AlunoMateriaNotas nota = new AlunoMateriaNotas();
-            nota.IdMateria= (cb_curso.SelectedIndex) + 1;
-            nota.IdAluno = (cb_aluno.SelectedIndex) + 1;
+            var materia = cb_materia.Text;
+            materia = materia.Substring(0, materia.IndexOf("-"));
+            nota.IdMateria = Convert.ToInt32(materia);
+            var aluno = cb_aluno.Text;
+            aluno = aluno.Substring(0,aluno.IndexOf("-"));
+            nota.IdAluno = Convert.ToInt32(aluno);
             nota.Nota = Convert.ToInt32(txt_nota.Text);
             var httpClient = new HttpClient();
-            var serializedProduto = JsonConvert.SerializeObject(nota);
-            var content = new StringContent(serializedProduto, Encoding.UTF8, "application/json");
-            var resultRequest = httpClient.PostAsync(caminho, content);
+            var resultRequest = httpClient.PostAsync($"{caminho}?idaluno={nota.IdAluno}&idmateria={nota.IdMateria}&nota={nota.Nota}",null);
             resultRequest.Wait();
             var result = resultRequest.Result.Content.ReadAsStringAsync();
             result.Wait();
-            MessageBox.Show("Nota Cadastrada!");
+            MessageBox.Show(result.Result);
+            txt_nota.Clear();
+
+        }
+
+        private void cb_curso_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListadeAlunos();
+            ListadeMateria();
         }
     }
 }

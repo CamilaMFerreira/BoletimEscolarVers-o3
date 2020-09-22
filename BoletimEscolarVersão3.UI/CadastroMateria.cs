@@ -60,11 +60,17 @@ namespace BoletimEscolarVersão3.UI
             materia.DataCadastro = Convert.ToDateTime(txt_data.Text);
             materia.IdCurso = (cb_curso.SelectedIndex) + 1;
             materia.Situação = cb_situação.Text;
-            new Adicionar().Add(materia, caminho);
+            var httpClient = new HttpClient();
+            var serializedProduto = JsonConvert.SerializeObject(materia);
+            var content = new StringContent(serializedProduto, Encoding.UTF8, "application/json");
+            var resultRequest = httpClient.PostAsync(caminho, content);
+            resultRequest.Wait();
+            var result = resultRequest.Result.Content.ReadAsStringAsync();
+            result.Wait();
             txt_nome.Clear();
             txt_data.Clear();
             txt_descrição.Clear();
-            MessageBox.Show("Materia Cadastrada!");
+            MessageBox.Show(result.Result);
         }
 
         private void btn_voltar_Click(object sender, EventArgs e)

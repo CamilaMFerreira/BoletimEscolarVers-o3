@@ -61,6 +61,7 @@
             this.cb_curso.Name = "cb_curso";
             this.cb_curso.Size = new System.Drawing.Size(220, 21);
             this.cb_curso.TabIndex = 5;
+            this.cb_curso.SelectedIndexChanged += new System.EventHandler(this.cb_curso_SelectedIndexChanged);
             // 
             // label2
             // 
