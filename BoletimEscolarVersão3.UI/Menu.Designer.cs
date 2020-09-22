@@ -37,9 +37,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 35F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Verdana", 35F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.label1.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label1.Location = new System.Drawing.Point(125, 56);
+            this.label1.Location = new System.Drawing.Point(77, 52);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(546, 57);
             this.label1.TabIndex = 0;
@@ -47,10 +47,10 @@
             // 
             // btn_aluno
             // 
-            this.btn_aluno.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_aluno.Location = new System.Drawing.Point(28, 187);
+            this.btn_aluno.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
+            this.btn_aluno.Location = new System.Drawing.Point(24, 162);
             this.btn_aluno.Name = "btn_aluno";
-            this.btn_aluno.Size = new System.Drawing.Size(206, 42);
+            this.btn_aluno.Size = new System.Drawing.Size(177, 36);
             this.btn_aluno.TabIndex = 5;
             this.btn_aluno.Text = "Aluno";
             this.btn_aluno.UseVisualStyleBackColor = true;
@@ -58,10 +58,10 @@
             // 
             // btn_professor
             // 
-            this.btn_professor.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_professor.Location = new System.Drawing.Point(551, 187);
+            this.btn_professor.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
+            this.btn_professor.Location = new System.Drawing.Point(472, 162);
             this.btn_professor.Name = "btn_professor";
-            this.btn_professor.Size = new System.Drawing.Size(206, 42);
+            this.btn_professor.Size = new System.Drawing.Size(177, 36);
             this.btn_professor.TabIndex = 5;
             this.btn_professor.Text = "Professor";
             this.btn_professor.UseVisualStyleBackColor = true;
@@ -69,10 +69,10 @@
             // 
             // btn_administrador
             // 
-            this.btn_administrador.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_administrador.Location = new System.Drawing.Point(287, 187);
+            this.btn_administrador.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
+            this.btn_administrador.Location = new System.Drawing.Point(246, 162);
             this.btn_administrador.Name = "btn_administrador";
-            this.btn_administrador.Size = new System.Drawing.Size(206, 42);
+            this.btn_administrador.Size = new System.Drawing.Size(177, 36);
             this.btn_administrador.TabIndex = 5;
             this.btn_administrador.Text = "Administrador";
             this.btn_administrador.UseVisualStyleBackColor = true;
@@ -80,9 +80,9 @@
             // 
             // Menu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 314);
+            this.ClientSize = new System.Drawing.Size(686, 272);
             this.Controls.Add(this.btn_administrador);
             this.Controls.Add(this.btn_professor);
             this.Controls.Add(this.btn_aluno);

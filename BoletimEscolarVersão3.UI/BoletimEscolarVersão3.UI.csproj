@@ -174,6 +174,9 @@
     <EmbeddedResource Include="ExcluirNota.resx">
       <DependentUpon>ExcluirNota.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MenuadminAluno.resx">
       <DependentUpon>MenuadminAluno.cs</DependentUpon>
     </EmbeddedResource>

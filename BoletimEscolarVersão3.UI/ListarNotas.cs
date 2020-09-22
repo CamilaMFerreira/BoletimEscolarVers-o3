@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -30,26 +31,32 @@ namespace BoletimEscolarVersão3.UI
         {
             try
             {
-                var cpf = txt_cpf.Text;
-                var httpClient = new HttpClient();
-                var URL = "https://localhost:44355/Aluno/ListarNotas";
-                var resultRequest = httpClient.GetAsync($"{URL}?cpf={cpf}");
-                var result = resultRequest.GetAwaiter().GetResult();
-
-                if (result.IsSuccessStatusCode)
+                if (Regex.IsMatch(txt_cpf.Text, @"^[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}"))
                 {
-                    var resultJson = result.Content.ReadAsStringAsync()
-                        .GetAwaiter().GetResult();
+                    var cpf = txt_cpf.Text;
+                    var httpClient = new HttpClient();
+                    var URL = "https://localhost:44355/Aluno/ListarNotas";
+                    var resultRequest = httpClient.GetAsync($"{URL}?cpf={cpf}");
+                    var result = resultRequest.GetAwaiter().GetResult();
 
-                    var data = JsonConvert.DeserializeObject<List<AlunoMateriaNotas>>(resultJson);
-                    foreach(var materia in data)
+                    if (result.IsSuccessStatusCode)
                     {
-                        txt_notas.Text = $"Materia : {materia.Materia.Nome}\t Nota : {materia.Nota}";
-                    }
-                    
-                    
-                }
+                        var resultJson = result.Content.ReadAsStringAsync()
+                            .GetAwaiter().GetResult();
 
+                        var data = JsonConvert.DeserializeObject<List<AlunoMateriaNotas>>(resultJson);
+                        foreach (var materia in data)
+                        {
+                            txt_notas.Text = $"Materia : {materia.Materia.Nome}\t Nota : {materia.Nota}";
+                        }
+
+
+                    }
+                }
+                else 
+                {
+                    MessageBox.Show("Digite um cpf válido");
+                }
             }
             catch { }
         }
