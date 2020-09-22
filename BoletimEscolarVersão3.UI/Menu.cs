@@ -32,7 +32,7 @@ namespace BoletimEscolarVersão3.UI
 
         private void btn_professor_Click(object sender, EventArgs e)
         {
-            var menuprof = new CadastroNota();
+            var menuprof = new Menuprof();
             this.Hide();
             menuprof.Show();
         }

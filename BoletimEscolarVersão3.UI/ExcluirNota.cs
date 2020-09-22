@@ -13,9 +13,9 @@ using System.Windows.Forms;
 
 namespace BoletimEscolarVersão3.UI
 {
-    public partial class ExcluirMateria : Form
+    public partial class ExcluirNota : Form
     {
-        public ExcluirMateria()
+        public ExcluirNota()
         {
             InitializeComponent();
             ListadeCursos();
@@ -24,6 +24,7 @@ namespace BoletimEscolarVersão3.UI
         {
             try
             {
+
                 var httpClient = new HttpClient();
                 var URL = "https://localhost:44355/Curso/Mostracursos";
                 var resultRequest = httpClient.GetAsync(URL);
@@ -41,6 +42,7 @@ namespace BoletimEscolarVersão3.UI
                         cb_curso.Items.Add($"{curso.Id} - {curso.Nome}");
                     }
                 }
+
             }
             catch { }
         }
@@ -71,24 +73,48 @@ namespace BoletimEscolarVersão3.UI
             }
             catch { }
         }
-        private void btn_voltar_Click(object sender, EventArgs e)
+        private void ListadeAlunos()
         {
-            var menu = new MenuAdminMateria();
-            this.Hide();
-            menu.Show();
-        }
+            try
+            {
+                cb_aluno.Items.Clear();
+                var httpClient = new HttpClient();
+                var URL = "https://localhost:44355/Aluno/FiltroAlunos";
+                var curso = cb_curso.Text;
+                curso = curso.Substring(0, curso.IndexOf("-"));
+                var idcurso = Convert.ToInt32(curso);
+                var resultRequest = httpClient.GetAsync($"{URL}?id={idcurso}");
+                var result = resultRequest.GetAwaiter().GetResult();
 
-        private void btn_Excluir_Click(object sender, EventArgs e)
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultJson = result.Content.ReadAsStringAsync()
+                        .GetAwaiter().GetResult();
+
+                    var data = JsonConvert.DeserializeObject<List<Aluno>>(resultJson);
+
+                    foreach (var aluno in data)
+                    {
+                        cb_aluno.Items.Add($"{aluno.Id} - {aluno.Nome}");
+                    }
+                }
+            }
+            catch { }
+        }
+        private void btn_alterar_Click(object sender, EventArgs e)
         {
             try
             {
                 var materia = cb_materia.Text;
                 materia = materia.Substring(0, materia.IndexOf("-"));
                 var idmateria = Convert.ToInt32(materia);
-                var caminho = "https://localhost:44355/Materia/Deletar";
+                var aluno = cb_aluno.Text;
+                aluno = aluno.Substring(0, aluno.IndexOf("-"));
+                var idaluno = Convert.ToInt32(materia);
+                var caminho = "https://localhost:44355/Materia/DeletarNota";
                 var httpClient = new HttpClient();
                 var serializedProduto = JsonConvert.SerializeObject(materia);
-                var resultRequest = httpClient.DeleteAsync($"{caminho}?id={idmateria}");
+                var resultRequest = httpClient.DeleteAsync($"{caminho}?idaluno={idaluno}&idmateria={idmateria}");
                 resultRequest.Wait();
                 var result = resultRequest.Result.Content.ReadAsStringAsync();
                 result.Wait();
@@ -101,6 +127,7 @@ namespace BoletimEscolarVersão3.UI
         private void cb_curso_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListadeMateria();
+            ListadeAlunos();
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -53,24 +54,39 @@ namespace BoletimEscolarVersão3.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var caminho = "https://localhost:44355/Materia/Nota";
-            Materia materia = new Materia();
-            materia.Nome = txt_nome.Text;
-            materia.Descrição = txt_descrição.Text;
-            materia.DataCadastro = Convert.ToDateTime(txt_data.Text);
-            materia.IdCurso = (cb_curso.SelectedIndex) + 1;
-            materia.Situação = cb_situação.Text;
-            var httpClient = new HttpClient();
-            var serializedProduto = JsonConvert.SerializeObject(materia);
-            var content = new StringContent(serializedProduto, Encoding.UTF8, "application/json");
-            var resultRequest = httpClient.PostAsync(caminho, content);
-            resultRequest.Wait();
-            var result = resultRequest.Result.Content.ReadAsStringAsync();
-            result.Wait();
-            txt_nome.Clear();
-            txt_data.Clear();
-            txt_descrição.Clear();
-            MessageBox.Show(result.Result);
+            var data = DateTime.Now;
+            if (!Regex.IsMatch(txt_descrição.Text, @"^[ a-zA-Z á]*$"))
+            {
+                MessageBox.Show("Só pode haver letras na descrição da materia");
+            }
+            else
+            {
+                if (Convert.ToDateTime(txt_data.Text) > data)
+                {
+                    MessageBox.Show("Data maior que a atual");
+                }
+                else
+                {
+                    var caminho = "https://localhost:44355/Materia/Adicionar";
+                    Materia materia = new Materia();
+                    materia.Nome = txt_nome.Text;
+                    materia.Descrição = txt_descrição.Text;
+                    materia.DataCadastro = Convert.ToDateTime(txt_data.Text);
+                    materia.IdCurso = (cb_curso.SelectedIndex) + 1;
+                    materia.Situação = cb_situação.Text;
+                    var httpClient = new HttpClient();
+                    var serializedProduto = JsonConvert.SerializeObject(materia);
+                    var content = new StringContent(serializedProduto, Encoding.UTF8, "application/json");
+                    var resultRequest = httpClient.PostAsync(caminho, content);
+                    resultRequest.Wait();
+                    var result = resultRequest.Result.Content.ReadAsStringAsync();
+                    result.Wait();
+                    txt_nome.Clear();
+                    txt_data.Clear();
+                    txt_descrição.Clear();
+                    MessageBox.Show(result.Result);
+                }
+            }
         }
 
         private void btn_voltar_Click(object sender, EventArgs e)

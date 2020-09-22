@@ -53,14 +53,14 @@ namespace BoletimEscolarVersão3.Controllers
                     result.Error = false;
                     result.Status = HttpStatusCode.OK;
                     result.Data = banco.Materia.ToList();
-                    return Ok(result);
+                    return Ok(Resultado.Sucesso);
                 }
             }
             catch (Exception e)
             {
                 result.Error = true;
                 result.Message.Add(e.Message);
-                return BadRequest(result);
+                return BadRequest(Resultado.NãoSucesso);
             }
         }
 
@@ -178,10 +178,25 @@ namespace BoletimEscolarVersão3.Controllers
 
 
             var aluno = banco.Aluno.Where(q => q.Id == idaluno).Include(x => x.MateriasNota).ThenInclude(z => z.Materia).FirstOrDefault();
+            if (aluno is null)
+            {
+                return BadRequest("Aluno não cadastrado ");
+            }
+            var materia = banco.Materia.Where(q => q.Id == idmateria).Include(x => x.Curso).FirstOrDefault();
+            if (materia is null)
+            {
+                return BadRequest("Materia não cadastrada");
+            }
+            var curso = materia.Curso.Materias.Where(q => q.IdCurso == aluno.IdCurso).FirstOrDefault();
+
+            if (curso is null)
+            {
+                return BadRequest("Materia não faz parte do curso do aluno");
+            }
             var resultado = aluno.MateriasNota.Where(q => q.Materia.Id == idmateria).Where(q => q.Aluno.Id == idaluno).FirstOrDefault();
             if (resultado is null)
             {
-                return BadRequest(Resultado.NãoSucesso);
+                return BadRequest("Não há nota cadastrada");
             }
             resultado.Nota = novanota;
             banco.SaveChanges();
@@ -189,6 +204,40 @@ namespace BoletimEscolarVersão3.Controllers
 
 
         }
+        [HttpDelete]
+        [Route("DeletarNota")]
+        public ActionResult DeletarNota(int idaluno, int idmateria)
+        {
+
+
+            var aluno = banco.Aluno.Where(q => q.Id == idaluno).Include(x => x.MateriasNota).ThenInclude(z => z.Materia).FirstOrDefault();
+            if (aluno is null)
+            {
+                return BadRequest("Aluno não cadastrado ");
+            }
+            var materia = banco.Materia.Where(q => q.Id == idmateria).Include(x => x.Curso).FirstOrDefault();
+            if (materia is null)
+            {
+                return BadRequest("Materia não cadastrada");
+            }
+            var curso = materia.Curso.Materias.Where(q => q.IdCurso == aluno.IdCurso).FirstOrDefault();
+
+            if (curso is null)
+            {
+                return BadRequest("Materia não faz parte do curso do aluno");
+            }
+            var resultado = aluno.MateriasNota.Where(q => q.Materia.Id == idmateria).Where(q => q.Aluno.Id == idaluno).FirstOrDefault();
+            if (resultado is null)
+            {
+                return BadRequest("Não há nota cadastrada");
+            }
+            banco.Remove(resultado);
+            banco.SaveChanges();
+            return Ok(Resultado.Sucesso);
+        }
+
+
+
 
         [HttpGet]
         [Route("FiltroMateria")]

@@ -13,9 +13,9 @@ using System.Windows.Forms;
 
 namespace BoletimEscolarVersão3.UI
 {
-    public partial class ExcluirMateria : Form
+    public partial class AlterarNota : Form
     {
-        public ExcluirMateria()
+        public AlterarNota()
         {
             InitializeComponent();
             ListadeCursos();
@@ -24,6 +24,7 @@ namespace BoletimEscolarVersão3.UI
         {
             try
             {
+
                 var httpClient = new HttpClient();
                 var URL = "https://localhost:44355/Curso/Mostracursos";
                 var resultRequest = httpClient.GetAsync(URL);
@@ -41,6 +42,7 @@ namespace BoletimEscolarVersão3.UI
                         cb_curso.Items.Add($"{curso.Id} - {curso.Nome}");
                     }
                 }
+
             }
             catch { }
         }
@@ -71,36 +73,73 @@ namespace BoletimEscolarVersão3.UI
             }
             catch { }
         }
+        private void ListadeAlunos()
+        {
+            try
+            {
+                cb_aluno.Items.Clear();
+                var httpClient = new HttpClient();
+                var URL = "https://localhost:44355/Aluno/FiltroAlunos";
+                var curso = cb_curso.Text;
+                curso = curso.Substring(0, curso.IndexOf("-"));
+                var idcurso = Convert.ToInt32(curso);
+                var resultRequest = httpClient.GetAsync($"{URL}?id={idcurso}");
+                var result = resultRequest.GetAwaiter().GetResult();
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultJson = result.Content.ReadAsStringAsync()
+                        .GetAwaiter().GetResult();
+
+                    var data = JsonConvert.DeserializeObject<List<Aluno>>(resultJson);
+
+                    foreach (var aluno in data)
+                    {
+                        cb_aluno.Items.Add($"{aluno.Id} - {aluno.Nome}");
+                    }
+                }
+            }
+            catch { }
+        }
+
         private void btn_voltar_Click(object sender, EventArgs e)
         {
-            var menu = new MenuAdminMateria();
+            var menu = new Menuprof();
             this.Hide();
             menu.Show();
         }
 
-        private void btn_Excluir_Click(object sender, EventArgs e)
+        private void btn_alterar_Click(object sender, EventArgs e)
         {
-            try
+            if (Convert.ToInt32(txt_nota.Text) < 0 || Convert.ToInt32(txt_nota.Text) > 100)
             {
+                MessageBox.Show("Nota inválida");
+            }
+            else
+            {
+                var caminho = "https://localhost:44355/Materia/AtualizarNota";
+                AlunoMateriaNotas nota = new AlunoMateriaNotas();
                 var materia = cb_materia.Text;
                 materia = materia.Substring(0, materia.IndexOf("-"));
-                var idmateria = Convert.ToInt32(materia);
-                var caminho = "https://localhost:44355/Materia/Deletar";
+                nota.IdMateria = Convert.ToInt32(materia);
+                var aluno = cb_aluno.Text;
+                aluno = aluno.Substring(0, aluno.IndexOf("-"));
+                nota.IdAluno = Convert.ToInt32(aluno);
+                nota.Nota = Convert.ToInt32(txt_nota.Text);
                 var httpClient = new HttpClient();
-                var serializedProduto = JsonConvert.SerializeObject(materia);
-                var resultRequest = httpClient.DeleteAsync($"{caminho}?id={idmateria}");
+                var resultRequest = httpClient.PutAsync($"{caminho}?idaluno={nota.IdAluno}&idmateria={nota.IdMateria}&novanota={nota.Nota}", null);
                 resultRequest.Wait();
                 var result = resultRequest.Result.Content.ReadAsStringAsync();
                 result.Wait();
                 MessageBox.Show(result.Result);
+                txt_nota.Clear();
             }
-            catch { }
-
         }
 
         private void cb_curso_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListadeMateria();
+            ListadeAlunos();
         }
     }
 }

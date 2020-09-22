@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -79,23 +80,54 @@ namespace BoletimEscolarVersão3.UI
 
         private void btn_cadastrar_Click(object sender, EventArgs e)
         {
-            var caminho = "https://localhost:44355/Aluno/Adicionar";
-            Aluno aluno = new Aluno();
-            aluno.Nome = txt_nome.Text;
-            aluno.Sobrenome = txt_sobrenome.Text;
-            aluno.Cpf = txt_cpf.Text;
-            aluno.DataNascimento = Convert.ToDateTime(txt_data.Text);
-            aluno.Função = "Aluno";
-            var curso = cb_curso.Text;
-            curso = curso.Substring(0, curso.IndexOf("-"));
-            aluno.IdCurso = Convert.ToInt32(curso);
-            new Adicionar().Add(aluno, caminho);
-            txt_nome.Clear();
-            txt_sobrenome.Clear();
-            txt_data.Clear();
-            txt_cpf.Clear();
+            var data = "01/01/2002";
+            if (Regex.IsMatch(txt_nome.Text, @"^[ a-zA-Z á]*$"))
+            {
 
-            MessageBox.Show("Aluno Cadastrado!");
+                if (Convert.ToDateTime(txt_data.Text) < Convert.ToDateTime(data))
+                {
+
+                    if (Regex.IsMatch(txt_cpf.Text, @"^[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}"))
+                    {
+
+                        var caminho = "https://localhost:44355/Aluno/Adicionar";
+                        Aluno aluno = new Aluno();
+                        aluno.Nome = txt_nome.Text;
+                        aluno.Sobrenome = txt_sobrenome.Text;
+                        aluno.Cpf = txt_cpf.Text;
+                        aluno.DataNascimento = Convert.ToDateTime(txt_data.Text);
+                        aluno.Função = "Aluno";
+                        var curso = cb_curso.Text;
+                        curso = curso.Substring(0, curso.IndexOf("-"));
+                        aluno.IdCurso = Convert.ToInt32(curso);
+                        new Adicionar().Add(aluno, caminho);
+                        txt_nome.Clear();
+                        txt_sobrenome.Clear();
+                        txt_data.Clear();
+                        txt_cpf.Clear();
+
+                        MessageBox.Show("Aluno Cadastrado!");
+                    }
+                    else 
+                    {
+                        MessageBox.Show("Digite um cpf válido");
+                    }
+                
+                }
+                else 
+                {
+                    MessageBox.Show("O aluno tem menos de 18 anos");
+                }
+            }
+            else 
+            {
+                MessageBox.Show("Só pode haver letras no nome do Aluno");
+            }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -111,29 +111,36 @@ namespace BoletimEscolarVersão3.UI
 
         private void btn_voltar_Click(object sender, EventArgs e)
         {
-            var menu = new Menu();
+            var menu = new Menuprof();
             this.Hide();
             menu.Show();
         }
 
         private void btn_cadastro_Click(object sender, EventArgs e)
         {
-            var caminho = "https://localhost:44355/Materia/Nota";
-            AlunoMateriaNotas nota = new AlunoMateriaNotas();
-            var materia = cb_materia.Text;
-            materia = materia.Substring(0, materia.IndexOf("-"));
-            nota.IdMateria = Convert.ToInt32(materia);
-            var aluno = cb_aluno.Text;
-            aluno = aluno.Substring(0,aluno.IndexOf("-"));
-            nota.IdAluno = Convert.ToInt32(aluno);
-            nota.Nota = Convert.ToInt32(txt_nota.Text);
-            var httpClient = new HttpClient();
-            var resultRequest = httpClient.PostAsync($"{caminho}?idaluno={nota.IdAluno}&idmateria={nota.IdMateria}&nota={nota.Nota}",null);
-            resultRequest.Wait();
-            var result = resultRequest.Result.Content.ReadAsStringAsync();
-            result.Wait();
-            MessageBox.Show(result.Result);
-            txt_nota.Clear();
+            if (Convert.ToInt32(txt_nota.Text) < 0 || Convert.ToInt32(txt_nota.Text) > 100)
+            {
+                MessageBox.Show("Nota inválida");
+            }
+            else
+            {
+                var caminho = "https://localhost:44355/Materia/Nota";
+                AlunoMateriaNotas nota = new AlunoMateriaNotas();
+                var materia = cb_materia.Text;
+                materia = materia.Substring(0, materia.IndexOf("-"));
+                nota.IdMateria = Convert.ToInt32(materia);
+                var aluno = cb_aluno.Text;
+                aluno = aluno.Substring(0, aluno.IndexOf("-"));
+                nota.IdAluno = Convert.ToInt32(aluno);
+                nota.Nota = Convert.ToInt32(txt_nota.Text);
+                var httpClient = new HttpClient();
+                var resultRequest = httpClient.PostAsync($"{caminho}?idaluno={nota.IdAluno}&idmateria={nota.IdMateria}&nota={nota.Nota}", null);
+                resultRequest.Wait();
+                var result = resultRequest.Result.Content.ReadAsStringAsync();
+                result.Wait();
+                MessageBox.Show(result.Result);
+                txt_nota.Clear();
+            }
 
         }
 

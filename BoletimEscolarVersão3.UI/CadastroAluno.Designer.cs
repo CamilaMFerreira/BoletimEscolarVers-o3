@@ -87,11 +87,12 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Verdana", 12F);
-            this.label5.Location = new System.Drawing.Point(45, 208);
+            this.label5.Location = new System.Drawing.Point(20, 206);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(188, 18);
             this.label5.TabIndex = 1;
             this.label5.Text = "Data de Nascimento :";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
             // 

@@ -84,18 +84,22 @@ namespace BoletimEscolarVersão3.UI
 
         private void btn_Excluir_Click(object sender, EventArgs e)
         {
-            var aluno = cb_aluno.Text;
-            aluno = aluno.Substring(0, aluno.IndexOf("-"));
-            var idcurso = Convert.ToInt32(aluno);
-            var caminho = "https://localhost:44355/Aluno/Deletar";
-            var httpClient = new HttpClient();
-            var serializedProduto = JsonConvert.SerializeObject(aluno);
-            var content = new StringContent(serializedProduto, Encoding.UTF8, "application/json");
-            var resultRequest = httpClient.DeleteAsync($"{caminho}?id={idcurso}");
-            resultRequest.Wait();
-            var result = resultRequest.Result.Content.ReadAsStringAsync();
-            result.Wait();
-            MessageBox.Show(result.Result);
+            try
+            {
+                var aluno = cb_aluno.Text;
+                aluno = aluno.Substring(0, aluno.IndexOf("-"));
+                var idcurso = Convert.ToInt32(aluno);
+                var caminho = "https://localhost:44355/Aluno/Deletar";
+                var httpClient = new HttpClient();
+                var serializedProduto = JsonConvert.SerializeObject(aluno);
+                var content = new StringContent(serializedProduto, Encoding.UTF8, "application/json");
+                var resultRequest = httpClient.DeleteAsync($"{caminho}?id={idcurso}");
+                resultRequest.Wait();
+                var result = resultRequest.Result.Content.ReadAsStringAsync();
+                result.Wait();
+                MessageBox.Show(result.Result);
+            }
+            catch { }
         }
 
         private void cb_curso_SelectedIndexChanged(object sender, EventArgs e)

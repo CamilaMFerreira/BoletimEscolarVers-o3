@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlterarNota.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlterarNota.Designer.cs">
+      <DependentUpon>AlterarNota.cs</DependentUpon>
+    </Compile>
     <Compile Include="CadastroAluno.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,12 @@
     <Compile Include="ExcluirMateria.Designer.cs">
       <DependentUpon>ExcluirMateria.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExcluirNota.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExcluirNota.Designer.cs">
+      <DependentUpon>ExcluirNota.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuadminAluno.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,8 +139,17 @@
     <Compile Include="MenuAdminMateria.Designer.cs">
       <DependentUpon>MenuAdminMateria.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menuprof.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menuprof.Designer.cs">
+      <DependentUpon>Menuprof.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AlterarNota.resx">
+      <DependentUpon>AlterarNota.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CadastroAluno.resx">
       <DependentUpon>CadastroAluno.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,6 +171,9 @@
     <EmbeddedResource Include="ExcluirMateria.resx">
       <DependentUpon>ExcluirMateria.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ExcluirNota.resx">
+      <DependentUpon>ExcluirNota.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MenuadminAluno.resx">
       <DependentUpon>MenuadminAluno.cs</DependentUpon>
     </EmbeddedResource>
@@ -161,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MenuAdminMateria.resx">
       <DependentUpon>MenuAdminMateria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menuprof.resx">
+      <DependentUpon>Menuprof.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
