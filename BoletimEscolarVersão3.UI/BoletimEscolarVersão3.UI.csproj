@@ -73,6 +73,30 @@
     <Compile Include="CadastroNota.Designer.cs">
       <DependentUpon>CadastroNota.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExcluirAluno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExcluirAluno.Designer.cs">
+      <DependentUpon>ExcluirAluno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExcluirCurso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExcluirCurso.Designer.cs">
+      <DependentUpon>ExcluirCurso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExcluirMateria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExcluirMateria.Designer.cs">
+      <DependentUpon>ExcluirMateria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuadminAluno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuadminAluno.Designer.cs">
+      <DependentUpon>MenuadminAluno.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListarNotas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,16 +115,52 @@
     <Compile Include="MenuAdmin.Designer.cs">
       <DependentUpon>MenuAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuAdminCurso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuAdminCurso.Designer.cs">
+      <DependentUpon>MenuAdminCurso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuAdminMateria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuAdminMateria.Designer.cs">
+      <DependentUpon>MenuAdminMateria.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CadastroAluno.resx">
       <DependentUpon>CadastroAluno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CadastroCurso.resx">
+      <DependentUpon>CadastroCurso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CadastroMateria.resx">
       <DependentUpon>CadastroMateria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CadastroNota.resx">
       <DependentUpon>CadastroNota.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExcluirAluno.resx">
+      <DependentUpon>ExcluirAluno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExcluirCurso.resx">
+      <DependentUpon>ExcluirCurso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExcluirMateria.resx">
+      <DependentUpon>ExcluirMateria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuadminAluno.resx">
+      <DependentUpon>MenuadminAluno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListarNotas.resx">
+      <DependentUpon>ListarNotas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuAdminCurso.resx">
+      <DependentUpon>MenuAdminCurso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuAdminMateria.resx">
+      <DependentUpon>MenuAdminMateria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -107,7 +107,7 @@ namespace BoletimEscolarVersão3.Controllers
         //Listar Notas
         [HttpGet]
         [Route("ListarNotas")]
-        public ActionResult ListarNotas(string cpf, int id)
+        public ActionResult ListarNotas(string cpf)
         {
             var busca = banco.Aluno.Where(q => q.Cpf == cpf).Include(x => x.MateriasNota).ThenInclude(z => z.Materia).FirstOrDefault();
             if (busca is null)

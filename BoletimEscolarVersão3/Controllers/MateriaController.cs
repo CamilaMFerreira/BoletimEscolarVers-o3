@@ -172,7 +172,7 @@ namespace BoletimEscolarVersão3.Controllers
         }
         //Alterar nota
         [HttpPut]
-        [Route("AtulizarNota")]
+        [Route("AtualizarNota")]
         public ActionResult AtualizarNota(int idaluno, int idmateria, double novanota)
         {
 

@@ -1,5 +1,4 @@
 ﻿using BoletimEscolarVersao3.Model;
-using BoletimEscolarVersao3.Utilitarios;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,16 +13,13 @@ using System.Windows.Forms;
 
 namespace BoletimEscolarVersão3.UI
 {
-    public partial class CadastroMateria : Form
+    public partial class ExcluirCurso : Form
     {
-        
-       
-        public CadastroMateria()
+        public ExcluirCurso()
         {
             InitializeComponent();
             ListadeCursos();
         }
-
         private void ListadeCursos()
         {
             try
@@ -49,53 +45,27 @@ namespace BoletimEscolarVersão3.UI
             catch { }
         }
 
-       
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var caminho = "https://localhost:44355/Materia/Nota";
-            Materia materia = new Materia();
-            materia.Nome = txt_nome.Text;
-            materia.Descrição = txt_descrição.Text;
-            materia.DataCadastro = Convert.ToDateTime(txt_data.Text);
-            materia.IdCurso = (cb_curso.SelectedIndex) + 1;
-            materia.Situação = cb_situação.Text;
-            var httpClient = new HttpClient();
-            var serializedProduto = JsonConvert.SerializeObject(materia);
-            var content = new StringContent(serializedProduto, Encoding.UTF8, "application/json");
-            var resultRequest = httpClient.PostAsync(caminho, content);
-            resultRequest.Wait();
-            var result = resultRequest.Result.Content.ReadAsStringAsync();
-            result.Wait();
-            txt_nome.Clear();
-            txt_data.Clear();
-            txt_descrição.Clear();
-            MessageBox.Show(result.Result);
-        }
-
         private void btn_voltar_Click(object sender, EventArgs e)
         {
-            var menu = new MenuAdminMateria();
+            var menu = new MenuAdminCurso();
             this.Hide();
             menu.Show();
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void btn_Excluir_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void CadastroMateria_Load(object sender, EventArgs e)
-        {
-            
-            
-
-        }
-
-        private void btn_excluir_Click(object sender, EventArgs e)
-        {
-            
-                
+            var curso = cb_curso.Text;
+            curso = curso.Substring(0, curso.IndexOf("-"));
+            var idcurso = Convert.ToInt32(curso);
+            var caminho = "https://localhost:44355/Curso/Deletar";
+            var httpClient = new HttpClient();
+            var serializedProduto = JsonConvert.SerializeObject(curso);
+            var content = new StringContent(serializedProduto, Encoding.UTF8, "application/json");
+            var resultRequest = httpClient.DeleteAsync($"{caminho}?id={idcurso}");
+            resultRequest.Wait();
+            var result = resultRequest.Result.Content.ReadAsStringAsync();
+            result.Wait();
+            MessageBox.Show(result.Result);
         }
     }
 }

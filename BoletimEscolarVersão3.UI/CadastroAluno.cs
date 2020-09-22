@@ -72,7 +72,7 @@ namespace BoletimEscolarVersão3.UI
 
         private void btn_voltar_Click(object sender, EventArgs e)
         {
-            var menu = new MenuAdmin();
+            var menu = new MenuadminAluno();
             this.Hide();
             menu.Show();
         }
@@ -86,7 +86,9 @@ namespace BoletimEscolarVersão3.UI
             aluno.Cpf = txt_cpf.Text;
             aluno.DataNascimento = Convert.ToDateTime(txt_data.Text);
             aluno.Função = "Aluno";
-            aluno.IdCurso = (cb_curso.SelectedIndex) + 1;
+            var curso = cb_curso.Text;
+            curso = curso.Substring(0, curso.IndexOf("-"));
+            aluno.IdCurso = Convert.ToInt32(curso);
             new Adicionar().Add(aluno, caminho);
             txt_nome.Clear();
             txt_sobrenome.Clear();

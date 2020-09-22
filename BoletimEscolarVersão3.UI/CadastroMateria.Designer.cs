@@ -41,7 +41,6 @@
             this.cb_curso = new System.Windows.Forms.ComboBox();
             this.txt_descrição = new System.Windows.Forms.TextBox();
             this.txt_nome = new System.Windows.Forms.TextBox();
-            this.btn_excluir = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -168,17 +167,6 @@
             this.txt_nome.Size = new System.Drawing.Size(223, 20);
             this.txt_nome.TabIndex = 2;
             // 
-            // btn_excluir
-            // 
-            this.btn_excluir.Font = new System.Drawing.Font("Verdana", 12F);
-            this.btn_excluir.Location = new System.Drawing.Point(390, 355);
-            this.btn_excluir.Name = "btn_excluir";
-            this.btn_excluir.Size = new System.Drawing.Size(79, 24);
-            this.btn_excluir.TabIndex = 4;
-            this.btn_excluir.Text = "Excluir";
-            this.btn_excluir.UseVisualStyleBackColor = true;
-            this.btn_excluir.Click += new System.EventHandler(this.btn_excluir_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -197,7 +185,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(481, 390);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btn_excluir);
             this.Controls.Add(this.txt_nome);
             this.Controls.Add(this.txt_descrição);
             this.Controls.Add(this.cb_curso);
@@ -234,7 +221,6 @@
         private System.Windows.Forms.ComboBox cb_curso;
         private System.Windows.Forms.TextBox txt_descrição;
         private System.Windows.Forms.TextBox txt_nome;
-        private System.Windows.Forms.Button btn_excluir;
         private System.Windows.Forms.Label label2;
     }
 }

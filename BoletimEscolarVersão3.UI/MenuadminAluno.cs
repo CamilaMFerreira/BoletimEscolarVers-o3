@@ -10,38 +10,42 @@ using System.Windows.Forms;
 
 namespace BoletimEscolarVersão3.UI
 {
-    public partial class MenuAdmin : Form
+    public partial class MenuadminAluno : Form
     {
-        public MenuAdmin()
+        public MenuadminAluno()
         {
             InitializeComponent();
         }
+
         private void btn_voltar_Click(object sender, EventArgs e)
         {
-            var menu = new Menu();
+            var menu = new MenuAdmin();
             this.Hide();
             menu.Show();
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void btn_cadaluno_Click(object sender, EventArgs e)
         {
-            var menu = new MenuadminAluno();
+            var menu = new CadastroAluno();
             this.Hide();
             menu.Show();
         }
 
-        private void btn_cadcurso_Click(object sender, EventArgs e)
+        private void btn_excluiraluno_Click(object sender, EventArgs e)
         {
-            var menu = new MenuAdminCurso();
+            var menu = new ExcluirAluno();
             this.Hide();
             menu.Show();
         }
 
-        private void btn_cadmateria_Click(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
-            var menu = new MenuAdminMateria();
-            this.Hide();
-           menu.Show();
+
         }
     }
 }

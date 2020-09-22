@@ -27,6 +27,7 @@ namespace BoletimEscolarVersão3.UI
         {
             try
             {
+                
                 var httpClient = new HttpClient();
                 var URL = "https://localhost:44355/Curso/Mostracursos";
                 var resultRequest = httpClient.GetAsync(URL);
@@ -52,6 +53,7 @@ namespace BoletimEscolarVersão3.UI
         {
             try
             {
+                cb_materia.Items.Clear();
                 var httpClient = new HttpClient();
                 var URL = "https://localhost:44355/Materia/FiltroMateria";
                 var curso = cb_curso.Text;
@@ -78,6 +80,7 @@ namespace BoletimEscolarVersão3.UI
         {
             try
             {
+                cb_aluno.Items.Clear();
                 var httpClient = new HttpClient();
                 var URL = "https://localhost:44355/Aluno/FiltroAlunos";
                 var curso = cb_curso.Text;
@@ -138,6 +141,26 @@ namespace BoletimEscolarVersão3.UI
         {
             ListadeAlunos();
             ListadeMateria();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var caminho = "https://localhost:44355/Materia/AtualizarNota";
+            AlunoMateriaNotas nota = new AlunoMateriaNotas();
+            var materia = cb_materia.Text;
+            materia = materia.Substring(0, materia.IndexOf("-"));
+            nota.IdMateria = Convert.ToInt32(materia);
+            var aluno = cb_aluno.Text;
+            aluno = aluno.Substring(0, aluno.IndexOf("-"));
+            nota.IdAluno = Convert.ToInt32(aluno);
+            nota.Nota = Convert.ToInt32(txt_nota.Text);
+            var httpClient = new HttpClient();
+            var resultRequest = httpClient.PutAsync($"{caminho}?idaluno={nota.IdAluno}&idmateria={nota.IdMateria}&novanota={nota.Nota}", null);
+            resultRequest.Wait();
+            var result = resultRequest.Result.Content.ReadAsStringAsync();
+            result.Wait();
+            MessageBox.Show(result.Result);
+            txt_nota.Clear();
         }
     }
 }

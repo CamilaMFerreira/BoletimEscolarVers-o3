@@ -22,7 +22,7 @@ namespace BoletimEscolarVersão3.UI
         }
         private void btn_voltar_Click(object sender, EventArgs e)
         {
-            var menu = new MenuAdmin();
+            var menu = new MenuAdminCurso();
             this.Hide();
             menu.Show();
         }

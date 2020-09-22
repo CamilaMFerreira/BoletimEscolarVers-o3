@@ -42,7 +42,6 @@
             this.cb_curso = new System.Windows.Forms.ComboBox();
             this.btn_cadastrar = new System.Windows.Forms.Button();
             this.btn_voltar = new System.Windows.Forms.Button();
-            this.btn_excluir = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -172,16 +171,6 @@
             this.btn_voltar.UseVisualStyleBackColor = true;
             this.btn_voltar.Click += new System.EventHandler(this.btn_voltar_Click);
             // 
-            // btn_excluir
-            // 
-            this.btn_excluir.Font = new System.Drawing.Font("Verdana", 12F);
-            this.btn_excluir.Location = new System.Drawing.Point(374, 404);
-            this.btn_excluir.Name = "btn_excluir";
-            this.btn_excluir.Size = new System.Drawing.Size(59, 24);
-            this.btn_excluir.TabIndex = 4;
-            this.btn_excluir.Text = "Excluir";
-            this.btn_excluir.UseVisualStyleBackColor = true;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -199,7 +188,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(457, 439);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.btn_excluir);
             this.Controls.Add(this.btn_voltar);
             this.Controls.Add(this.btn_cadastrar);
             this.Controls.Add(this.cb_curso);
@@ -237,7 +225,6 @@
         private System.Windows.Forms.ComboBox cb_curso;
         private System.Windows.Forms.Button btn_cadastrar;
         private System.Windows.Forms.Button btn_voltar;
-        private System.Windows.Forms.Button btn_excluir;
         private System.Windows.Forms.Label label8;
     }
 }
