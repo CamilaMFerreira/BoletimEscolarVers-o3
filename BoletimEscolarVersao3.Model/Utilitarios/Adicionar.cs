@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 
-namespace BoletimEscolarVersão3Modelos.Uteis
+namespace BoletimEscolarVersao3.Utilitarios
+
 {
     public class Adicionar
     {
@@ -18,6 +19,8 @@ namespace BoletimEscolarVersão3Modelos.Uteis
             resultRequest.Wait();
             var result = resultRequest.Result.Content.ReadAsStringAsync();
             result.Wait();
+           
+
             
         }
     }

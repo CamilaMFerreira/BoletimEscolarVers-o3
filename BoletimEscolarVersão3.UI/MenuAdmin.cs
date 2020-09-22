@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BoletimEscolarVersão3Visual
+namespace BoletimEscolarVersão3.UI
 {
-    public partial class Form1 : Form
+    public partial class MenuAdmin : Form
     {
-        public Form1()
+        public MenuAdmin()
         {
             InitializeComponent();
         }
-
         private void btn_voltar_Click(object sender, EventArgs e)
         {
             var menu = new Menu();
@@ -26,8 +27,7 @@ namespace BoletimEscolarVersão3Visual
         {
             var menu = new CadastroAluno();
             this.Hide();
-            menu.ShowDialog();
-            this.Show();
+            menu.Show();
         }
 
         private void btn_cadcurso_Click(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace BoletimEscolarVersão3Visual
         {
             var menu = new CadastroMateria();
             this.Hide();
-            menu.Show();
+           menu.Show();
         }
     }
 }

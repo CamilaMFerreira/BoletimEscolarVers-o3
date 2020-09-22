@@ -1,6 +1,6 @@
-﻿namespace BoletimEscolarVersão3Visual
+﻿namespace BoletimEscolarVersão3.UI
 {
-    partial class Form1
+    partial class MenuAdmin
     {
         /// <summary>
         /// Required designer variable.

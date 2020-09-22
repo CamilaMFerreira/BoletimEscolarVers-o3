@@ -50,7 +50,7 @@ namespace BoletimEscolarVersão3.Controllers
         [Route("Mostracursos")]
         public ActionResult Get()
         {
-            return Ok(banco.Curso);
+            return Ok(banco.Curso.ToList());
         }
 
         //Deletar Curso

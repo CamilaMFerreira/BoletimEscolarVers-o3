@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BoletimEscolarVersão3Visual
+namespace BoletimEscolarVersão3.UI
 {
     public partial class Menu : Form
     {
@@ -16,7 +16,6 @@ namespace BoletimEscolarVersão3Visual
         {
             InitializeComponent();
         }
-
         private void btn_aluno_Click(object sender, EventArgs e)
         {
             var menu = new ListarNotas();// tela que voce quer abrir
@@ -26,14 +25,14 @@ namespace BoletimEscolarVersão3Visual
 
         private void btn_administrador_Click(object sender, EventArgs e)
         {
-            var menuadmin = new Form1();
+            var menuadmin = new MenuAdmin();
             this.Hide();
             menuadmin.Show();
         }
 
         private void btn_professor_Click(object sender, EventArgs e)
         {
-            var menuprof= new CadastroNota();
+            var menuprof = new CadastroNota();
             this.Hide();
             menuprof.Show();
         }

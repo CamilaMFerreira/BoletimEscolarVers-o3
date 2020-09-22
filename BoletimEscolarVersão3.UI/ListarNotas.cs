@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace BoletimEscolarVersão3.UI
 {
-    public partial class Form1 : Form
+    public partial class ListarNotas : Form
     {
-        public Form1()
+        public ListarNotas()
         {
             InitializeComponent();
+        }
+        private void btn_voltar_Click(object sender, EventArgs e)
+        {
+            var menu = new Menu();
+            this.Hide();
+            menu.Show();
         }
     }
 }

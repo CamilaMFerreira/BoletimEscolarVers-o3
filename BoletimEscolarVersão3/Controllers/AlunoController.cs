@@ -37,28 +37,28 @@ namespace BoletimEscolarVersão3.Controllers
                         result.Error = true;
                         result.Message.Add($"O curso cadastrado não existe");
                         result.Status = HttpStatusCode.BadRequest;
-                        return Ok(result);
+                        return Ok(Resultado.NãoSucesso);
                     }
-                    if (curso.Situação == "Desativado")
+                    if (curso.Situação == "Inativo")
                     {
                         result.Error = true;
                         result.Message.Add($"O curso está desativado");
                         result.Status = HttpStatusCode.BadRequest;
-                        return Ok(result);
+                        return Ok(Resultado.NãoSucesso);
                     }
                     banco.Add(aluno);
                     banco.SaveChanges();
                     result.Error = false;
                     result.Status = HttpStatusCode.OK;
                     result.Data = banco.Aluno.ToList();
-                    return Ok(result);
+                    return Ok(Resultado.Sucesso);
                 }
             }
             catch (Exception e)
             {
                 result.Error = true;
                 result.Message.Add(e.Message);
-                return BadRequest(result);
+                return BadRequest(Resultado.NãoSucesso);
             }
         }
 
@@ -67,7 +67,7 @@ namespace BoletimEscolarVersão3.Controllers
         [Route("Mostra")]
         public ActionResult Get()
         {
-            return Ok(banco.Aluno);
+            return Ok(banco.Aluno.ToList());
         }
 
         //Deletar Aluno
@@ -115,6 +115,19 @@ namespace BoletimEscolarVersão3.Controllers
                 return BadRequest(Resultado.NãoSucesso);
             }
             return Ok(busca.MateriasNota);
+        }
+
+        [HttpGet]
+        [Route("FiltroAlunos")]
+        public ActionResult Filtro(int id)
+        {
+            var resultado = banco.Aluno.Where(q => q.IdCurso == id).ToList();
+
+            if (resultado.Count() == 0)
+            {
+                return BadRequest(Resultado.NãoSucesso);
+            }
+            return Ok(resultado);
         }
     }
 }

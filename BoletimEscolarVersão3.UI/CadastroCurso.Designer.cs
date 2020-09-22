@@ -1,4 +1,4 @@
-﻿namespace BoletimEscolarVersão3Visual
+﻿namespace BoletimEscolarVersão3.UI
 {
     partial class CadastroCurso
     {

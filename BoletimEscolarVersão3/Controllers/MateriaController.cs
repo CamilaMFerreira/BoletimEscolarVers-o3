@@ -69,7 +69,7 @@ namespace BoletimEscolarVersão3.Controllers
         [Route("MostraMateria")]
         public ActionResult Get()
         {
-            return Ok(banco.Materia);
+            return Ok(banco.Materia.ToList());
         }
 
         //Deletar Materia
@@ -170,7 +170,7 @@ namespace BoletimEscolarVersão3.Controllers
         //Alterar nota
         [HttpPut]
         [Route("AtulizarNota")]
-        public ActionResult AtualizarNota(int idaluno, int idmateria , double novanota)
+        public ActionResult AtualizarNota(int idaluno, int idmateria, double novanota)
         {
 
 
@@ -187,6 +187,17 @@ namespace BoletimEscolarVersão3.Controllers
 
         }
 
+        [HttpGet]
+        [Route("FiltroMateria")]
+        public ActionResult Filtro(int id)
+        {
+            var resultado = banco.Materia.Where(q => q.IdCurso == id).ToList();
 
+            if (resultado.Count() == 0)
+            {
+                return BadRequest(Resultado.NãoSucesso);
+            }
+            return Ok(resultado);
+        }
     }
 }
