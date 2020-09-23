@@ -69,7 +69,7 @@ namespace BoletimEscolarVersão3.UI
 
                     foreach (var aluno in data)
                     {
-                        cb_aluno.Items.Add($"{aluno.Id} - {aluno.Nome}");
+                        cb_aluno.Items.Add($"{aluno.Id} - {aluno.Nome} {aluno.Sobrenome}");
                     }
                 }
             }

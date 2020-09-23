@@ -81,9 +81,15 @@ namespace BoletimEscolarVersão3.Controllers
             {
                 return BadRequest(Resultado.NãoSucesso);
             }
+            var busca = banco.Aluno.Where(q => q.Id == id).Include(x => x.MateriasNota).ThenInclude(z => z.Materia).FirstOrDefault();
+            var verificar = busca.MateriasNota.Where(q => q.Aluno.Id == resultado.Id).ToList();
+            if (verificar == null) 
+            {
+                return BadRequest("Esse aluno tem notas para serem excluidas");
+            }
             banco.Aluno.Remove(resultado);
             banco.SaveChanges();
-            return Ok(banco.Aluno);
+            return Ok(Resultado.Sucesso);
 
         }
 

@@ -95,7 +95,7 @@ namespace BoletimEscolarVersão3.UI
 
                     foreach (var aluno in data)
                     {
-                        cb_aluno.Items.Add($"{aluno.Id} - {aluno.Nome}");
+                        cb_aluno.Items.Add($"{aluno.Id} - {aluno.Nome} {aluno.Sobrenome}");
                     }
                 }
             }
@@ -128,6 +128,13 @@ namespace BoletimEscolarVersão3.UI
         {
             ListadeMateria();
             ListadeAlunos();
+        }
+
+        private void btn_voltar_Click(object sender, EventArgs e)
+        {
+            var menu = new Menuprof();
+            this.Hide();
+            menu.Show();
         }
     }
 }
