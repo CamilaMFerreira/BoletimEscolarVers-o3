@@ -4,14 +4,16 @@ using BoletimEscolarVersão3Modelos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BoletimEscolarVersão3Modelos.Migrations
 {
     [DbContext(typeof(BancoContex))]
-    partial class BancoContexModelSnapshot : ModelSnapshot
+    [Migration("20200925170756_AddAlunoFunção")]
+    partial class AddAlunoFunção
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

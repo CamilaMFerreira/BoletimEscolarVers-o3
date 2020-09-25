@@ -129,5 +129,65 @@ namespace BoletimEscolarVersão3.UI
         {
 
         }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CadastroAluno_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cb_curso_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_cpf_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_data_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_nome_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_sobrenome_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

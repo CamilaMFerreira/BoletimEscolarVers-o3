@@ -8,6 +8,23 @@ namespace BoletimEscolarVersão3Modelos.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "AdmProfessor",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(maxLength: 100, nullable: false),
+                    Sobrenome = table.Column<string>(maxLength: 100, nullable: false),
+                    DataNascimento = table.Column<DateTime>(nullable: false),
+                    Cpf = table.Column<string>(maxLength: 100, nullable: false),
+                    Função = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AdmProfessor", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Curso",
                 columns: table => new
                 {
@@ -31,7 +48,6 @@ namespace BoletimEscolarVersão3Modelos.Migrations
                     Sobrenome = table.Column<string>(maxLength: 100, nullable: false),
                     DataNascimento = table.Column<DateTime>(nullable: false),
                     Cpf = table.Column<string>(maxLength: 100, nullable: false),
-                    Função = table.Column<string>(maxLength: 100, nullable: false),
                     IdCurso = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -118,6 +134,9 @@ namespace BoletimEscolarVersão3Modelos.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AdmProfessor");
+
             migrationBuilder.DropTable(
                 name: "AlunoMateriaNotas");
 

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BoletimEscolarVersão3Modelos.Migrations
 {
     [DbContext(typeof(BancoContex))]
-    [Migration("20200920194735_initialcreate")]
+    [Migration("20200925164155_initialcreate")]
     partial class initialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace BoletimEscolarVersão3Modelos.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("BoletimEscolarVersão3Modelos.Modelos.Aluno", b =>
+            modelBuilder.Entity("BoletimEscolarVersao3.Model.Aluno", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -35,11 +35,6 @@ namespace BoletimEscolarVersão3Modelos.Migrations
 
                     b.Property<DateTime>("DataNascimento")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Função")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
 
                     b.Property<int>("IdCurso")
                         .HasColumnType("int");
@@ -61,7 +56,7 @@ namespace BoletimEscolarVersão3Modelos.Migrations
                     b.ToTable("Aluno");
                 });
 
-            modelBuilder.Entity("BoletimEscolarVersão3Modelos.Modelos.AlunoMateriaNotas", b =>
+            modelBuilder.Entity("BoletimEscolarVersao3.Model.AlunoMateriaNotas", b =>
                 {
                     b.Property<int>("IdAluno")
                         .HasColumnType("int");
@@ -87,7 +82,7 @@ namespace BoletimEscolarVersão3Modelos.Migrations
                     b.ToTable("AlunoMateriaNotas");
                 });
 
-            modelBuilder.Entity("BoletimEscolarVersão3Modelos.Modelos.Curso", b =>
+            modelBuilder.Entity("BoletimEscolarVersao3.Model.Curso", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -108,7 +103,7 @@ namespace BoletimEscolarVersão3Modelos.Migrations
                     b.ToTable("Curso");
                 });
 
-            modelBuilder.Entity("BoletimEscolarVersão3Modelos.Modelos.Materia", b =>
+            modelBuilder.Entity("BoletimEscolarVersao3.Model.Materia", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -139,29 +134,63 @@ namespace BoletimEscolarVersão3Modelos.Migrations
                     b.ToTable("Materia");
                 });
 
-            modelBuilder.Entity("BoletimEscolarVersão3Modelos.Modelos.Aluno", b =>
+            modelBuilder.Entity("BoletimEscolarVersao3.Model.Model.AdmProfessor", b =>
                 {
-                    b.HasOne("BoletimEscolarVersão3Modelos.Modelos.Curso", "Curso")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Função")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Sobrenome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AdmProfessor");
+                });
+
+            modelBuilder.Entity("BoletimEscolarVersao3.Model.Aluno", b =>
+                {
+                    b.HasOne("BoletimEscolarVersao3.Model.Curso", "Curso")
                         .WithMany("Alunos")
                         .HasForeignKey("IdCurso")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BoletimEscolarVersão3Modelos.Modelos.AlunoMateriaNotas", b =>
+            modelBuilder.Entity("BoletimEscolarVersao3.Model.AlunoMateriaNotas", b =>
                 {
-                    b.HasOne("BoletimEscolarVersão3Modelos.Modelos.Aluno", "Aluno")
+                    b.HasOne("BoletimEscolarVersao3.Model.Aluno", "Aluno")
                         .WithMany("MateriasNota")
                         .HasForeignKey("AlunoId");
 
-                    b.HasOne("BoletimEscolarVersão3Modelos.Modelos.Materia", "Materia")
+                    b.HasOne("BoletimEscolarVersao3.Model.Materia", "Materia")
                         .WithMany("AlunoNota")
                         .HasForeignKey("MateriaId");
                 });
 
-            modelBuilder.Entity("BoletimEscolarVersão3Modelos.Modelos.Materia", b =>
+            modelBuilder.Entity("BoletimEscolarVersao3.Model.Materia", b =>
                 {
-                    b.HasOne("BoletimEscolarVersão3Modelos.Modelos.Curso", "Curso")
+                    b.HasOne("BoletimEscolarVersao3.Model.Curso", "Curso")
                         .WithMany("Materias")
                         .HasForeignKey("IdCurso")
                         .OnDelete(DeleteBehavior.Cascade)

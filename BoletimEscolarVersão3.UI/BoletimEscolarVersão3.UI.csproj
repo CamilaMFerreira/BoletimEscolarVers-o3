@@ -55,6 +55,12 @@
     <Compile Include="AlterarNota.Designer.cs">
       <DependentUpon>AlterarNota.cs</DependentUpon>
     </Compile>
+    <Compile Include="CadastroAdmProfessor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CadastroAdmProfessor.Designer.cs">
+      <DependentUpon>CadastroAdmProfessor.cs</DependentUpon>
+    </Compile>
     <Compile Include="CadastroAluno.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +109,12 @@
     <Compile Include="ExcluirNota.Designer.cs">
       <DependentUpon>ExcluirNota.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuadminAluno.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +162,9 @@
     <EmbeddedResource Include="AlterarNota.resx">
       <DependentUpon>AlterarNota.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CadastroAdmProfessor.resx">
+      <DependentUpon>CadastroAdmProfessor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CadastroAluno.resx">
       <DependentUpon>CadastroAluno.cs</DependentUpon>
     </EmbeddedResource>
@@ -173,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExcluirNota.resx">
       <DependentUpon>ExcluirNota.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
