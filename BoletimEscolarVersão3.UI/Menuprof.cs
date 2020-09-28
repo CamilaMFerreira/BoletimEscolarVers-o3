@@ -40,7 +40,7 @@ namespace BoletimEscolarVersão3.UI
 
         private void btn_voltar_Click(object sender, EventArgs e)
         {
-            var menu = new Menu();
+            var menu = new Login();
             this.Hide();
             menu.Show();
         }

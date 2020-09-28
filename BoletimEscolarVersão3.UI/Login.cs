@@ -26,7 +26,7 @@ namespace BoletimEscolarVersão3.UI
             {
                 List<string> cpf = new List<string>();
                 var httpClient = new HttpClient();
-                var URL = "https://localhost:44355/Curso/Mostracursos";
+                var URL = "https://localhost:44355/Aluno/Mostra";
                 var resultRequest = httpClient.GetAsync(URL);
                 var result = resultRequest.GetAwaiter().GetResult();
 
@@ -64,13 +64,13 @@ namespace BoletimEscolarVersão3.UI
 
         }
 
-        private bool ListadeCpfAdmProf(string cpflogin)
+        private AdmProfessor ListadeCpfAdmProf(string cpflogin)
         {
             try
             {
-                List<string> cpf = new List<string>();
+                
                 var httpClient = new HttpClient();
-                var URL = "https://localhost:44355/Curso/Mostracursos";
+                var URL = "https://localhost:44355/AdmProfessor/Mostra";
                 var resultRequest = httpClient.GetAsync(URL);
                 var result = resultRequest.GetAwaiter().GetResult();
 
@@ -81,20 +81,9 @@ namespace BoletimEscolarVersão3.UI
 
                     var data = JsonConvert.DeserializeObject<List<AdmProfessor>>(resultJson);
 
-                    foreach (var adm in data)
-                    {
-                        cpf.Add(adm.Cpf);
-                    }
+                    var resultado = data.Where(q => q.Cpf == cpflogin).FirstOrDefault();
 
-
-                    if (cpf.Contains(cpflogin))
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    return resultado;
                 }
                 else
                 {
@@ -113,10 +102,34 @@ namespace BoletimEscolarVersão3.UI
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-
-            if (ListadeCpfAlunos(txt_cpf.Text)) 
+            var alunos = ListadeCpfAlunos(txt_cpf.Text);
+            if (alunos) 
             {
-                MessageBox.Show("Você é um aluno pede para seu coordenador te cadastrar");
+                var menu = new ListarNotas();
+                this.Hide();
+                menu.Show();
+            }
+           
+            var admprof = ListadeCpfAdmProf(txt_cpf.Text);
+            if (admprof!= null)
+            {
+                if(admprof.Função== "Professor") 
+                {
+                    var menu = new Menuprof();
+                    this.Hide();
+                    menu.Show();
+                }
+
+               if (admprof.Função == "Administrador") 
+                {
+                    var menu = new MenuAdmin();
+                    this.Hide();
+                    menu.Show();
+                }
+            }
+            if (!alunos && admprof is null) 
+            {
+                MessageBox.Show("Voce não está cadastrado");
             }
 
 
