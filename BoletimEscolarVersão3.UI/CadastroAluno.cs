@@ -48,7 +48,49 @@ namespace BoletimEscolarVersão3.UI
             }
             catch { }
         }
+        private bool ListadeCpfAlunos(string cpflogin)
+        {
+            try
+            {
+                List<string> cpf = new List<string>();
+                var httpClient = new HttpClient();
+                var URL = "https://localhost:44355/Aluno/Mostra";
+                var resultRequest = httpClient.GetAsync(URL);
+                var result = resultRequest.GetAwaiter().GetResult();
 
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultJson = result.Content.ReadAsStringAsync()
+                        .GetAwaiter().GetResult();
+
+                    var data = JsonConvert.DeserializeObject<List<Aluno>>(resultJson);
+
+                    foreach (var aluno in data)
+                    {
+                        cpf.Add(aluno.Cpf);
+                    }
+
+
+                    if (cpf.Contains(cpflogin))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    throw new Exception();
+                }
+            }
+            catch
+            {
+                throw new Exception();
+            }
+
+        }
         private void btn_cadastro_Click(object sender, EventArgs e)
         {
             var caminho = "https://localhost:44355/Aluno/Adicionar";
@@ -89,24 +131,31 @@ namespace BoletimEscolarVersão3.UI
 
                     if (Regex.IsMatch(txt_cpf.Text, @"^[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}"))
                     {
+                        var alunos = ListadeCpfAlunos(txt_cpf.Text);
+                        if (!alunos)
+                        {
+                            var caminho = "https://localhost:44355/Aluno/Adicionar";
+                            Aluno aluno = new Aluno();
+                            aluno.Nome = txt_nome.Text;
+                            aluno.Sobrenome = txt_sobrenome.Text;
+                            aluno.Cpf = txt_cpf.Text;
+                            aluno.DataNascimento = Convert.ToDateTime(txt_data.Text);
+                            aluno.Função = "Aluno";
+                            var curso = cb_curso.Text;
+                            curso = curso.Substring(0, curso.IndexOf("-"));
+                            aluno.IdCurso = Convert.ToInt32(curso);
+                            new Adicionar().Add(aluno, caminho);
+                            txt_nome.Clear();
+                            txt_sobrenome.Clear();
+                            txt_data.Clear();
+                            txt_cpf.Clear();
 
-                        var caminho = "https://localhost:44355/Aluno/Adicionar";
-                        Aluno aluno = new Aluno();
-                        aluno.Nome = txt_nome.Text;
-                        aluno.Sobrenome = txt_sobrenome.Text;
-                        aluno.Cpf = txt_cpf.Text;
-                        aluno.DataNascimento = Convert.ToDateTime(txt_data.Text);
-                        aluno.Função = "Aluno";
-                        var curso = cb_curso.Text;
-                        curso = curso.Substring(0, curso.IndexOf("-"));
-                        aluno.IdCurso = Convert.ToInt32(curso);
-                        new Adicionar().Add(aluno, caminho);
-                        txt_nome.Clear();
-                        txt_sobrenome.Clear();
-                        txt_data.Clear();
-                        txt_cpf.Clear();
-
-                        MessageBox.Show("Aluno Cadastrado!");
+                            MessageBox.Show("Aluno Cadastrado!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cpf já cadastrado");
+                        }
                     }
                     else 
                     {

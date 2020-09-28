@@ -134,5 +134,12 @@ namespace BoletimEscolarVersão3.UI
 
 
         }
+
+        private void btn_cadastro_Click(object sender, EventArgs e)
+        {
+            var menu = new CadastroAdmProfessor();
+            this.Hide();
+            menu.Show();
+        }
     }
 }
