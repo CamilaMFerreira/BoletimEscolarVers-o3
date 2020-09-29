@@ -1,4 +1,5 @@
 ﻿using BoletimEscolarVersao3.Model;
+using BoletimEscolarVersao3.Model.Utilitarios;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,9 @@ namespace BoletimEscolarVersão3.UI
         {
             try
             {
-                if (Regex.IsMatch(txt_cpf.Text, @"^[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}"))
+                var verificador = new Validaçoes().VerificaCpf(txt_cpf.Text);
+
+                if (verificador.Valido)
                 {
                     var cpf = txt_cpf.Text;
                     var httpClient = new HttpClient();
@@ -55,7 +58,7 @@ namespace BoletimEscolarVersão3.UI
                 }
                 else 
                 {
-                    MessageBox.Show("Digite um cpf válido");
+                    MessageBox.Show(verificador.Erros);
                 }
             }
             catch { }

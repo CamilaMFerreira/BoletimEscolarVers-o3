@@ -1,4 +1,5 @@
 ﻿using BoletimEscolarVersao3.Model;
+using BoletimEscolarVersao3.Model.Utilitarios;
 using BoletimEscolarVersao3.Utilitarios;
 using Newtonsoft.Json;
 using System;
@@ -37,11 +38,8 @@ namespace BoletimEscolarVersão3.UI
 
         private void btn_cadastro_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(txt_nota.Text) < 0 || Convert.ToInt32(txt_nota.Text) > 100)
-            {
-                MessageBox.Show("Nota inválida");
-            }
-            else
+            var verificador = new Validaçoes().VerificaNota(txt_nota.Text);
+            if(verificador.Valido)
             {
                 var caminho = "https://localhost:44355/Materia/Nota";
                 AlunoMateriaNotas nota = new AlunoMateriaNotas();
@@ -59,6 +57,10 @@ namespace BoletimEscolarVersão3.UI
                 result.Wait();
                 MessageBox.Show(result.Result);
                 txt_nota.Clear();
+            }
+            else 
+            {
+                MessageBox.Show(verificador.Erros);
             }
 
         }

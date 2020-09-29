@@ -1,4 +1,5 @@
 ﻿using BoletimEscolarVersao3.Model;
+using BoletimEscolarVersao3.Utilitarios;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

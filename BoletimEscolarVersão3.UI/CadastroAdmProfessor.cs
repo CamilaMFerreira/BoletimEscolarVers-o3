@@ -1,5 +1,6 @@
 ﻿using BoletimEscolarVersao3.Model;
 using BoletimEscolarVersao3.Model.Model;
+using BoletimEscolarVersao3.Model.Utilitarios;
 using BoletimEscolarVersao3.Utilitarios;
 using Newtonsoft.Json;
 using System;
@@ -62,52 +63,27 @@ namespace BoletimEscolarVersão3.UI
 
         private void btn_cadastrar_Click(object sender, EventArgs e)
         {
-            if (Regex.IsMatch(txt_nome.Text, @"^[ a-zA-Z á]*$"))
+
+            var caminho = "https://localhost:44355/AdmProfessor/Adicionar";
+            AdmProfessor pessoa = new AdmProfessor();
+            pessoa.Nome = txt_nome.Text;
+            pessoa.Sobrenome = txt_sobrenome.Text;
+            pessoa.Cpf = txt_cpf.Text;
+            pessoa.DataNascimento = Convert.ToDateTime(txt_data.Text);
+            pessoa.Função = cb_função.Text;
+            var verificador = new Validaçoes().Verificaadmprofessocadastro(pessoa);
+            if (verificador.Valido)
             {
-
-                if (cb_função.Text != "Aluno")
-                {
-
-                    if (Regex.IsMatch(txt_cpf.Text, @"^[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}"))
-                    {
-
-                        var admprof = ListadeCpfAdmProf(txt_cpf.Text);
-                        if (admprof == null)
-                        {
-                            var caminho = "https://localhost:44355/AdmProfessor/Adicionar";
-                            AdmProfessor pessoa = new AdmProfessor();
-                            pessoa.Nome = txt_nome.Text;
-                            pessoa.Sobrenome = txt_sobrenome.Text;
-                            pessoa.Cpf = txt_cpf.Text;
-                            pessoa.DataNascimento = Convert.ToDateTime(txt_data.Text);
-                            pessoa.Função = cb_função.Text;
-                            var curso = cb_função.Text;
-                            new Adicionar().Add(pessoa, caminho);
-                            txt_nome.Clear();
-                            txt_sobrenome.Clear();
-                            txt_data.Clear();
-                            txt_cpf.Clear();
-                            MessageBox.Show(" Cadastrado!");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Cpf já cadastrado");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Digite um cpf válido");
-                    }
-
-                }
-                else
-                {
-                    MessageBox.Show("Você é um aluno, peça ao seu coordenador para realizar seu cadastro");
-                }
+                new Adicionar().Add(pessoa, caminho);
+                txt_nome.Clear();
+                txt_sobrenome.Clear();
+                txt_data.Clear();
+                txt_cpf.Clear();
+                MessageBox.Show(" Cadastrado!");
             }
             else
             {
-                MessageBox.Show("Só pode haver letras no nome do Aluno");
+                MessageBox.Show(verificador.Erros);
             }
         }
     }
