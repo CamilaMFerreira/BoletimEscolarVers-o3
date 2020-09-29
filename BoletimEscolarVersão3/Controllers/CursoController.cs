@@ -34,7 +34,7 @@ namespace BoletimEscolarVersão3.Controllers
                     result.Error = false;
                     result.Status = HttpStatusCode.OK;
                     result.Data = banco.Curso.ToList();
-                    return Ok(result);
+                    return Ok("Cadastrado com sucesso");
                 }
             }
             catch (Exception e)

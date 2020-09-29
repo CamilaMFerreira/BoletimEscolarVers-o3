@@ -1,4 +1,5 @@
 ﻿using BoletimEscolarVersao3.Model;
+using BoletimEscolarVersao3.Utilitarios;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -18,63 +19,10 @@ namespace BoletimEscolarVersão3.UI
         public ExcluirAluno()
         {
             InitializeComponent();
-            ListadeCursos();
+            cb_curso.DataSource = new Listas().ListadeCursos();
+          
         }
-        private void ListadeCursos()
-        {
-            try
-            {
-
-                var httpClient = new HttpClient();
-                var URL = "https://localhost:44355/Curso/Mostracursos";
-                var resultRequest = httpClient.GetAsync(URL);
-                var result = resultRequest.GetAwaiter().GetResult();
-
-                if (result.IsSuccessStatusCode)
-                {
-                    var resultJson = result.Content.ReadAsStringAsync()
-                        .GetAwaiter().GetResult();
-
-                    var data = JsonConvert.DeserializeObject<List<Curso>>(resultJson);
-
-                    foreach (var curso in data)
-                    {
-                        cb_curso.Items.Add($"{curso.Id} - {curso.Nome}");
-                    }
-                }
-
-            }
-            catch { }
-        }
-    
-        private void ListadeAlunos()
-        {
-            try
-            {
-                cb_aluno.Items.Clear();
-                var httpClient = new HttpClient();
-                var URL = "https://localhost:44355/Aluno/FiltroAlunos";
-                var curso = cb_curso.Text;
-                curso = curso.Substring(0, curso.IndexOf("-"));
-                var idcurso = Convert.ToInt32(curso);
-                var resultRequest = httpClient.GetAsync($"{URL}?id={idcurso}");
-                var result = resultRequest.GetAwaiter().GetResult();
-
-                if (result.IsSuccessStatusCode)
-                {
-                    var resultJson = result.Content.ReadAsStringAsync()
-                        .GetAwaiter().GetResult();
-
-                    var data = JsonConvert.DeserializeObject<List<Aluno>>(resultJson);
-
-                    foreach (var aluno in data)
-                    {
-                        cb_aluno.Items.Add($"{aluno.Id} - {aluno.Nome} {aluno.Sobrenome}");
-                    }
-                }
-            }
-            catch { }
-        }
+      
         private void btn_voltar_Click(object sender, EventArgs e)
         {
             var menu = new MenuadminAluno();
@@ -104,7 +52,9 @@ namespace BoletimEscolarVersão3.UI
 
         private void cb_curso_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListadeAlunos();
+            cb_aluno.Items.Clear();
+            foreach (var item in new Listas().ListadeAlunos(cb_curso.Text))
+                cb_aluno.Items.Add(item);
         }
     }
 }

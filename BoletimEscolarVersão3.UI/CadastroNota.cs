@@ -19,91 +19,10 @@ namespace BoletimEscolarVersão3.UI
         public CadastroNota()
         {
             InitializeComponent();
-            ListadeCursos();
-
-
+            cb_curso.DataSource = new Listas().ListadeCursos();
         }
-        private void ListadeCursos()
-        {
-            try
-            {
-                
-                var httpClient = new HttpClient();
-                var URL = "https://localhost:44355/Curso/Mostracursos";
-                var resultRequest = httpClient.GetAsync(URL);
-                var result = resultRequest.GetAwaiter().GetResult();
-
-                if (result.IsSuccessStatusCode)
-                {
-                    var resultJson = result.Content.ReadAsStringAsync()
-                        .GetAwaiter().GetResult();
-
-                    var data = JsonConvert.DeserializeObject<List<Curso>>(resultJson);
-
-                    foreach (var curso in data)
-                    {
-                        cb_curso.Items.Add($"{curso.Id} - {curso.Nome}");
-                    }
-                }
-              
-            }
-            catch { }
-        }
-        private void ListadeMateria()
-        {
-            try
-            {
-                cb_materia.Items.Clear();
-                var httpClient = new HttpClient();
-                var URL = "https://localhost:44355/Materia/FiltroMateria";
-                var curso = cb_curso.Text;
-                curso = curso.Substring(0, curso.IndexOf("-"));
-                var resultRequest = httpClient.GetAsync($"{URL}?id={curso}");
-                var result = resultRequest.GetAwaiter().GetResult();
-
-                if (result.IsSuccessStatusCode)
-                {
-                    var resultJson = result.Content.ReadAsStringAsync()
-                        .GetAwaiter().GetResult();
-
-                    var data = JsonConvert.DeserializeObject<List<Materia>>(resultJson);
-
-                    foreach (var materia in data)
-                    {
-                        cb_materia.Items.Add($"{materia.Id} - {materia.Nome}");
-                    }
-                }
-            }
-            catch { }
-        }
-        private void ListadeAlunos()
-        {
-            try
-            {
-                cb_aluno.Items.Clear();
-                var httpClient = new HttpClient();
-                var URL = "https://localhost:44355/Aluno/FiltroAlunos";
-                var curso = cb_curso.Text;
-                curso = curso.Substring(0, curso.IndexOf("-"));
-                var idcurso = Convert.ToInt32(curso);
-                var resultRequest = httpClient.GetAsync($"{URL}?id={idcurso}");
-                var result = resultRequest.GetAwaiter().GetResult();
-
-                if (result.IsSuccessStatusCode)
-                {
-                    var resultJson = result.Content.ReadAsStringAsync()
-                        .GetAwaiter().GetResult();
-
-                    var data = JsonConvert.DeserializeObject<List<Aluno>>(resultJson);
-
-                    foreach (var aluno in data)
-                    {
-                        cb_aluno.Items.Add($"{aluno.Id} - {aluno.Nome} {aluno.Sobrenome}");
-                    }
-                }
-            }
-            catch { }
-        }
+       
+     
         private void button2_Click(object sender, EventArgs e)
         {
 
@@ -146,8 +65,14 @@ namespace BoletimEscolarVersão3.UI
 
         private void cb_curso_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListadeAlunos();
-            ListadeMateria();
+            cb_aluno.Items.Clear();
+            cb_materia.Items.Clear();
+            foreach (var item in new Listas().ListadeMateria(cb_curso.Text))
+                cb_materia.Items.Add(item);
+            foreach (var item in new Listas().ListadeAlunos(cb_curso.Text))
+                cb_aluno.Items.Add(item);
+            
+
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using BoletimEscolarVersao3.Model;
+using BoletimEscolarVersao3.Utilitarios;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -18,32 +19,10 @@ namespace BoletimEscolarVersão3.UI
         public ExcluirCurso()
         {
             InitializeComponent();
-            ListadeCursos();
+            cb_curso.DataSource = new Listas().ListadeCursos();
+            
         }
-        private void ListadeCursos()
-        {
-            try
-            {
-                var httpClient = new HttpClient();
-                var URL = "https://localhost:44355/Curso/Mostracursos";
-                var resultRequest = httpClient.GetAsync(URL);
-                var result = resultRequest.GetAwaiter().GetResult();
-
-                if (result.IsSuccessStatusCode)
-                {
-                    var resultJson = result.Content.ReadAsStringAsync()
-                        .GetAwaiter().GetResult();
-
-                    var data = JsonConvert.DeserializeObject<List<Curso>>(resultJson);
-
-                    foreach (var curso in data)
-                    {
-                        cb_curso.Items.Add($"{curso.Id} - {curso.Nome}");
-                    }
-                }
-            }
-            catch { }
-        }
+     
 
         private void btn_voltar_Click(object sender, EventArgs e)
         {

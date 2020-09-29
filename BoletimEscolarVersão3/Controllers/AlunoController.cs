@@ -22,13 +22,13 @@ namespace BoletimEscolarVersão3.Controllers
 
         //Cadastrar aluno
         [HttpPost]
-        [Route("Adicionar")] 
+        [Route("Adicionar")]
         public ActionResult Post(Aluno aluno)
         {
-           var result = new Result<Aluno>();
+            var result = new Result<Aluno>();
 
-         try
-           {
+            try
+            {
                 using (banco)
                 {
                     var curso = banco.Curso.Where(q => q.Id == aluno.IdCurso).FirstOrDefault();
@@ -48,6 +48,8 @@ namespace BoletimEscolarVersão3.Controllers
                     }
                     banco.Add(aluno);
                     banco.SaveChanges();
+
+
                     result.Error = false;
                     result.Status = HttpStatusCode.OK;
                     result.Data = banco.Aluno.ToList();
@@ -83,7 +85,7 @@ namespace BoletimEscolarVersão3.Controllers
             }
             var busca = banco.Aluno.Where(q => q.Id == id).Include(x => x.MateriasNota).ThenInclude(z => z.Materia).FirstOrDefault();
             var verificar = busca.MateriasNota.Where(q => q.Aluno.Id == resultado.Id).ToList();
-            if (verificar == null) 
+            if (verificar == null)
             {
                 return BadRequest("Esse aluno tem notas para serem excluidas");
             }

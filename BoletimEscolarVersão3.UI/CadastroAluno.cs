@@ -20,77 +20,11 @@ namespace BoletimEscolarVersão3.UI
         public CadastroAluno()
         {
             InitializeComponent();
-            ListadeCursos();
+            cb_curso.DataSource = new Listas().ListadeCursos();
 
 
         }
-        private void ListadeCursos()
-        {
-            try
-            {
-                var httpClient = new HttpClient();
-                var URL = "https://localhost:44355/Curso/Mostracursos";
-                var resultRequest = httpClient.GetAsync(URL);
-                var result = resultRequest.GetAwaiter().GetResult();
-
-                if (result.IsSuccessStatusCode)
-                {
-                    var resultJson = result.Content.ReadAsStringAsync()
-                        .GetAwaiter().GetResult();
-
-                    var data = JsonConvert.DeserializeObject<List<Curso>>(resultJson);
-
-                    foreach (var curso in data)
-                    {
-                        cb_curso.Items.Add($"{curso.Id} - {curso.Nome}");
-                    }
-                }
-            }
-            catch { }
-        }
-        private bool ListadeCpfAlunos(string cpflogin)
-        {
-            try
-            {
-                List<string> cpf = new List<string>();
-                var httpClient = new HttpClient();
-                var URL = "https://localhost:44355/Aluno/Mostra";
-                var resultRequest = httpClient.GetAsync(URL);
-                var result = resultRequest.GetAwaiter().GetResult();
-
-                if (result.IsSuccessStatusCode)
-                {
-                    var resultJson = result.Content.ReadAsStringAsync()
-                        .GetAwaiter().GetResult();
-
-                    var data = JsonConvert.DeserializeObject<List<Aluno>>(resultJson);
-
-                    foreach (var aluno in data)
-                    {
-                        cpf.Add(aluno.Cpf);
-                    }
-
-
-                    if (cpf.Contains(cpflogin))
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-                else
-                {
-                    throw new Exception();
-                }
-            }
-            catch
-            {
-                throw new Exception();
-            }
-
-        }
+      
         private void btn_cadastro_Click(object sender, EventArgs e)
         {
             var caminho = "https://localhost:44355/Aluno/Adicionar";
@@ -131,7 +65,7 @@ namespace BoletimEscolarVersão3.UI
 
                     if (Regex.IsMatch(txt_cpf.Text, @"^[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}"))
                     {
-                        var alunos = ListadeCpfAlunos(txt_cpf.Text);
+                        var alunos = new Listas().ListadeCpfAlunos(txt_cpf.Text);
                         if (!alunos)
                         {
                             var caminho = "https://localhost:44355/Aluno/Adicionar";
@@ -174,69 +108,6 @@ namespace BoletimEscolarVersão3.UI
             }
         }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CadastroAluno_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cb_curso_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_cpf_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_data_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_nome_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_sobrenome_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
+     
     }
 }
