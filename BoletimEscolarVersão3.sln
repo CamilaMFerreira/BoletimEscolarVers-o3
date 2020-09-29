@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoletimEscolarVersao3.Model
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoletimEscolarVersão3.UI", "BoletimEscolarVersão3.UI\BoletimEscolarVersão3.UI.csproj", "{F39B6BF1-B17E-4A6C-BB5D-07F3D2B480AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoletimEscolarVersão3.Testes", "BoletimEscolarVersão3.Testes\BoletimEscolarVersão3.Testes.csproj", "{3408D437-C7F9-46A6-98C5-6BABF2D9676A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F39B6BF1-B17E-4A6C-BB5D-07F3D2B480AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F39B6BF1-B17E-4A6C-BB5D-07F3D2B480AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F39B6BF1-B17E-4A6C-BB5D-07F3D2B480AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3408D437-C7F9-46A6-98C5-6BABF2D9676A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3408D437-C7F9-46A6-98C5-6BABF2D9676A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3408D437-C7F9-46A6-98C5-6BABF2D9676A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3408D437-C7F9-46A6-98C5-6BABF2D9676A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
