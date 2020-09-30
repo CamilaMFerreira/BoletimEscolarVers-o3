@@ -1,7 +1,9 @@
 ﻿using BoletimEscolarVersao3.Model;
+using BoletimEscolarVersao3.Model.Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 
@@ -141,6 +143,52 @@ namespace BoletimEscolarVersao3.Utilitarios
                 return valores;
             }
             catch 
+            {
+                throw new Exception();
+            }
+        }
+
+
+
+        public bool ListadeCpfAdmProf(string cpflogin)
+        {
+            try
+            {
+                List<string> cpf = new List<string>();
+                var httpClient = new HttpClient();
+                var URL = "https://localhost:44355/AdmProfessor/Mostra";
+                var resultRequest = httpClient.GetAsync(URL);
+                var result = resultRequest.GetAwaiter().GetResult();
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultJson = result.Content.ReadAsStringAsync()
+                        .GetAwaiter().GetResult();
+
+                    var data = JsonConvert.DeserializeObject<List<AdmProfessor>>(resultJson);
+
+
+                    foreach (var aluno in data)
+                    {
+                        cpf.Add(aluno.Cpf);
+                    }
+
+
+                    if (cpf.Contains(cpflogin))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    throw new Exception();
+                }
+            }
+            catch
             {
                 throw new Exception();
             }

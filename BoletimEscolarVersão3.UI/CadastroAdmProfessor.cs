@@ -23,37 +23,7 @@ namespace BoletimEscolarVersão3.UI
         {
             InitializeComponent();
         }
-        private AdmProfessor ListadeCpfAdmProf(string cpflogin)
-        {
-            try
-            {
-
-                var httpClient = new HttpClient();
-                var URL = "https://localhost:44355/AdmProfessor/Mostra";
-                var resultRequest = httpClient.GetAsync(URL);
-                var result = resultRequest.GetAwaiter().GetResult();
-
-                if (result.IsSuccessStatusCode)
-                {
-                    var resultJson = result.Content.ReadAsStringAsync()
-                        .GetAwaiter().GetResult();
-
-                    var data = JsonConvert.DeserializeObject<List<AdmProfessor>>(resultJson);
-
-                    var resultado = data.Where(q => q.Cpf == cpflogin).FirstOrDefault();
-
-                    return resultado;
-                }
-                else
-                {
-                    throw new Exception();
-                }
-            }
-            catch
-            {
-                throw new Exception();
-            }
-        }
+       
         private void btn_voltar_Click(object sender, EventArgs e)
         {
             var menu = new Login();

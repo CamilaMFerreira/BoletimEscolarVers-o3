@@ -58,7 +58,8 @@ namespace BoletimEscolarVersão3.UI
         private void btn_cadastrar_Click(object sender, EventArgs e)
         {
             var verificadata = new Validaçoes().Verificadata(txt_data.Text);
-            if (verificadata.Valido)
+            var verficacpf = new Validaçoes().Existecpfaluno(txt_cpf.Text);
+            if (verificadata.Valido && verficacpf.Valido)
             {
                 var caminho = "https://localhost:44355/Aluno/Adicionar";
                 Aluno aluno = new Aluno();

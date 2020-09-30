@@ -19,7 +19,7 @@ namespace BoletimEscolarVersao3.Model.Utilitarios
                 verifica.Erros = "Só pode haver letras no nome do Aluno";
                 return verifica;
             }
-            if (aluno.Nome is null || aluno.Sobrenome is null || aluno.Cpf is null)
+            if (aluno.Nome == string.Empty || aluno.Sobrenome == string.Empty || aluno.Cpf == string.Empty)
             {
                 verifica.Valido = false;
                 verifica.Erros = "Não pode haver campos vazios";
@@ -39,13 +39,13 @@ namespace BoletimEscolarVersao3.Model.Utilitarios
                 return verifica;
             }
 
-            var alunos = new Listas().ListadeCpfAlunos(aluno.Cpf);
-            if (alunos)
-            {
+            //var alunos = new Listas().ListadeCpfAlunos(aluno.Cpf);
+            //if (new Listas().ListadeCpfAlunos(aluno.Cpf))
+           /* {
                 verifica.Valido = false;
                 verifica.Erros = "Cpf já cadastrado";
                 return verifica;
-            }
+            }*/
             return verifica;
 
         }
@@ -57,7 +57,7 @@ namespace BoletimEscolarVersao3.Model.Utilitarios
                 verifica.Erros = "Só pode haver letras no nome ";
                 return verifica;
             }
-            if (pessoa.Nome is null || pessoa.Sobrenome is null || pessoa.Cpf is null)
+            if (pessoa.Nome ==string.Empty|| pessoa.Sobrenome == string.Empty || pessoa.Cpf == string.Empty)
             {
                 verifica.Valido = false;
                 verifica.Erros = "Não pode haver campos vazios";
@@ -72,13 +72,13 @@ namespace BoletimEscolarVersao3.Model.Utilitarios
                 return verifica;
             }
 
-            var alunos = new Listas().ListadeCpfAlunos(pessoa.Cpf);
-            if (alunos)
+            /*var pessoas = new Listas().ListadeCpfAdmProf(pessoa.Cpf);
+            if (pessoas)
             {
                 verifica.Valido = false;
                 verifica.Erros = "Cpf já cadastrado";
                 return verifica;
-            }
+            }*/
             if (pessoa.Função == "Aluno")
             {
                 verifica.Valido = false;
@@ -88,6 +88,18 @@ namespace BoletimEscolarVersao3.Model.Utilitarios
             return verifica;
 
         }
+        public Verificador Existecpfaluno(string cpf) 
+        {
+            var pessoas = new Listas().ListadeCpfAlunos(cpf);
+            if (pessoas)
+            {
+                verifica.Valido = false;
+                verifica.Erros = "Cpf já cadastrado";
+                return verifica;
+            }
+            return verifica;
+        }
+
 
         public Verificador VerificaMateria(Materia materia)
         {
